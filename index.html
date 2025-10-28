@@ -46,27 +46,31 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: calc(100vh - 70px); /* adjust for header */
+      min-height: calc(100vh - 70px);
       width: 100%;
       box-sizing: border-box;
     }
-    .portal-grid {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 80px;
-    }
-    .col-stack {
+    .portal-table {
       display: flex;
       flex-direction: column;
-      gap: 36px;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      width: 100%;
+    }
+    .portal-row {
+      display: flex;
+      flex-direction: row;
+      gap: 46px;
+      justify-content: center;
+      align-items: center;
     }
     .portal-btn {
       background: linear-gradient(120deg, #e3f2fd 65%, #1565c0 100%);
       color: #11407b;
-      min-width: 220px;
-      padding: 38px 22px;
-      font-size: 1.18rem;
+      min-width: 205px;
+      padding: 36px 22px;
+      font-size: 1.13rem;
       font-weight: 500;
       text-align: center;
       box-shadow: 0 2px 14px rgba(33,60,138,0.07);
@@ -76,6 +80,8 @@
       transition: transform 0.12s, box-shadow 0.18s, background 0.14s;
       text-decoration: none;
       margin-bottom: 3px;
+      margin-top: 2px;
+      display: inline-block;
     }
     .portal-btn:hover, .portal-btn:focus {
       background: linear-gradient(120deg, #b3ddf8 60%, #254280 100%);
@@ -83,20 +89,19 @@
       box-shadow: 0 4px 30px rgba(33,60,138,0.13);
       transform: translateY(-3px) scale(1.033);
     }
-    .portal-btn.disabled, .portal-btn[disabled] {
-      background: #e3e6ea;
-      color: #888ca7;
-      pointer-events: none;
-      opacity: 0.7;
+    @media (max-width: 1200px) {
+      .portal-btn {min-width: 170px; font-size: 1.01rem;}
+      .portal-row {gap:23px;}
     }
     @media (max-width: 900px) {
-      .portal-grid {gap:36px;}
+      .portal-row {gap:12px;}
       .header .pattern {margin:0;}
     }
     @media (max-width: 700px) {
       .center-content {min-height: calc(100vh - 60px);}
-      .portal-grid {flex-direction:column; gap:32px; align-items:center;}
-      .col-stack {width:100%; align-items:center;}
+      .portal-table {gap:13px;}
+      .portal-row {flex-direction:column; gap: 18px;}
+      .portal-btn {min-width:160px; width:94vw;}
       .header {flex-direction:column; align-items: flex-start; padding:13px 9px;}
       .header .pattern {margin:0;}
     }
@@ -109,26 +114,36 @@
     <div style="width:110px;"></div>
   </div>
   <div class="center-content">
-    <div class="portal-grid">
-      <!-- Left column (top to bottom) -->
-      <div class="col-stack">
+    <div class="portal-table">
+      <div class="portal-row">
         <a href="https://colab.research.google.com/drive/1zaKq8gZo1gG26yOj0s0N7u3zNtdtkbcA?usp=sharing" target="_blank" class="portal-btn">
           SEO Colour
         </a>
         <a href="https://colab.research.google.com/drive/1jX7K-IGFdC5r8F2Pn4dqAc-Xrz_rnekA?usp=sharing" target="_blank" class="portal-btn">
           Image QC
         </a>
-        <a href="#" class="portal-btn">PXM</a>
+        <a href="https://colab.research.google.com/drive/1XVFrQ_ADmsIOOEW4sg8KEmEQVmOmmmVD?usp=sharing" target="_blank" class="portal-btn">
+          PXM
+        </a>
       </div>
-      <!-- Right column (top to bottom) -->
-      <div class="col-stack">
+      <div class="portal-row">
         <a href="https://colab.research.google.com/drive/145QPjai0SDD7FdkzG13BBwOsziYSI4uF" target="_blank" class="portal-btn">
           Image Stack
         </a>
         <a href="https://colab.research.google.com/drive/1xwK-aCgkqWk61BfglR0YNL3yF5zIyE0t?usp=sharing" target="_blank" class="portal-btn">
           Shelf Create Master ID
         </a>
-        <a href="#" class="portal-btn">CLR</a>
+        <a href="https://colab.research.google.com/drive/13OTrx3t3LTXFJZk0vnkBcSbarXZRuk-M?usp=sharing" target="_blank" class="portal-btn">
+          CLR
+        </a>
+      </div>
+      <div class="portal-row">
+        <a href="https://colab.research.google.com/drive/1xQlMaVQBwdQBuhfbtGb1rdakIhm8VxKR?usp=sharing" target="_blank" class="portal-btn">
+          PC/Shelf Update
+        </a>
+        <a href="https://colab.research.google.com/drive/1oca5Dpk4W5ztFVzAWbail7zuXly0q6bb?usp=sharing" target="_blank" class="portal-btn">
+          Walmart DP SEO Scrap
+        </a>
       </div>
     </div>
   </div>
