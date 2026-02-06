@@ -1,2 +1,2 @@
-# DQ-Library
+# DQ-Code
 Data Quality Codes
