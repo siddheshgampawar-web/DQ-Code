@@ -11,152 +11,196 @@
   --blue3: #ddeaff;
   --white: #fcfcfc;
   --shadow: 0 2px 14px rgba(33,60,138,0.07);
+  --internalIconColor: #193a83;
 }
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: 'Segoe UI', Arial, sans-serif;
-  color: #1a237e;
-  background: linear-gradient(150deg, var(--blue1) 60%, var(--blue2) 100%);
   min-height: 100vh;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, var(--blue1) 60%, var(--blue2) 100%);
 }
-body {background-color: white;}
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--blue1) 60%, var(--blue2) 100%);
+}
+.main-app-container {
+  margin: 0 auto;
+  min-width: 315px;
+  max-width: 1600px;
+  min-height: 100vh;
+  background: var(--white);
+  box-shadow: 0 1px 18px rgba(50,80,120,.05);
+}
 .header-bar {
   width: 100%;
-  position: relative;
+  background: var(--white);
+  box-shadow: 0 2px 12px rgba(120,150,180,.07);
   display: flex;
-  flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 43px 0 14px 0;
-  z-index: 2;
+  position: relative;
+  z-index: 10;
+  min-height: 80px;
+}
+.header-left, .header-right {
+  display: flex;
+  align-items: center;
+  height: 80px;
 }
 .header-left {
-  min-width: 175px;
-  display:flex; align-items: flex-start; padding-left: 34px;
+  min-width: 170px;
+  padding-left: 18px;
 }
 .name {
-  font-size: 1.15rem;
+  font-size: 1rem;
   color: #325088;
   font-weight: 500;
-  letter-spacing: .5px;
-  background: #e0ebfc;
+  background: #EDF6FF;
   border-radius: 7px;
-  padding: 3px 19px 5px 13px;
+  padding: 6px 19px 7px 12px;
   user-select: none;
   box-shadow: 0 1px 8px rgba(50,80,120,.05);
 }
+.header-right {
+  min-width: auto;
+  padding-right: 18px;
+}
+.global-search-container {
+  display: flex;
+  align-items: center;
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(33,60,138,0.12);
+  padding: 0 10px 0 6px;
+  min-width: 190px;
+  max-width: 258px;
+  width: 100%;
+  height: 37px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  border: 1px solid #c3daff;
+}
+.global-search-icon {
+  font-size: 1.02rem;
+  color: #3566a8;
+  margin-right: 5px;
+}
+.global-search-input {
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #274176;
+  width: 100%;
+  min-width:60px;
+  max-width:190px;
+  padding: 8px 0 8px 0;
+}
+.global-search-suggest {
+  position: absolute;
+  top: 47px;
+  right: 0;
+  width: 258px;
+  background: #f3faff;
+  border: 1px solid #b6cffa;
+  border-radius: 7px;
+  box-shadow: 0 2px 8px rgba(33,60,138,.09);
+  max-height: 170px;
+  overflow-y: auto;
+  display: none;
+  padding: 2px 0;
+  z-index: 999;
+}
+.global-search-suggest.open { display: block; }
+.global-search-suggest-item {
+  padding: 7px 18px;
+  cursor: pointer;
+  color: #125ad3;
+  font-size: .99rem;
+  border-bottom: 1px solid #e3f0fc;
+  background: #f3faff;
+}
+.global-search-suggest-item:last-child {border-bottom:none;}
+.global-search-suggest-item:hover {
+  background: #ddeaff; color:#2a277a;
+}
 .header-center {
-  flex-grow: 1;
+  left: 0; right: 0; top: 0;
+  height: 80px;
+  position: absolute;
+  width: 100vw;
+  z-index:0;
+  pointer-events: none;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  position:absolute;
-  left: 0; right: 0; top: 9px;
-  margin-left: auto; margin-right: auto;
-  pointer-events: none;
-  z-index:1;
+  justify-content: center;
 }
 .dqteam, .pattern-title {
-  font-size: 2.1rem;
-  font-family: inherit;
+  font-size: 2rem;
   font-weight: bold;
   color: #235bb7;
   letter-spacing: 2px;
   background: linear-gradient(90deg, #b2cdfc 70%, #f2f6fa 100%);
   border-radius: 12px;
   text-align: center;
-  padding: 6px 34px 7px 34px;
-  margin-bottom: 3px;
-  box-shadow: 0 1px 7px rgba(100,127,180,.10);
+  padding: 6px 32px 7px 32px;
+  margin-bottom: 2px;
+  box-shadow: 0 1px 7px rgba(100,127,180,.08);
   user-select: none;
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
   pointer-events:auto;
 }
 .pattern-title {
   color: #2b59a5;
   margin-top: 0;
-  margin-bottom: 4px;
+  margin-bottom: 0;
 }
-.header-right {
-  min-width: 242px;
-  padding-right: 34px;
-  display:flex; flex-direction: row; align-items: flex-start;
-  z-index:3;
+@media (max-width: 1100px) {
+  .main-app-container {max-width: 98vw;}
+  .codes-2col-grid {gap:18px;}
+  .codes-ulist {max-width:95vw;}
+  .center-content {max-width:98vw;}
+  .sidebar, .sidebar-right {width:180px;max-width:220px;min-width:110px;}
+  .header-bar {min-height:60px;}
+  .header-left, .header-right {height: 60px;}
+  .header-center {height: 60px;}
+  .dqteam, .pattern-title {font-size:1.2rem; padding: 2px 12vw;}
 }
-/* Search Bar */
-.global-search-container {
-  display: flex;
-  align-items: center;
-  position: relative;
-  background: var(--white);
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(33,60,138,0.12);
-  padding: 3px 12px 3px 5px;
-  min-width: 216px;
-  max-width: 308px;
-  width: 100%;
+@media (max-width: 800px) {
+  .container-main {flex-direction:column;}
+  .sidebar, .sidebar-right {display:none;}
+  .center-content {margin:13px 2vw;}
+  .codes-link {font-size:0.97rem;padding:9px 6px;}
+  .codes-title {margin-top:9px;}
+  .codes-2col-grid {flex-direction:column; gap:8px;}
+  .global-search-suggest {width: 95vw; left: 0;}
+  .main-app-container {max-width:100vw;}
 }
-.global-search-icon {
-  font-size: 1.18rem;
-  color: #3566a8;
-  margin-right: 7px;
-}
-.global-search-input {
-  font-size: 1.08rem;
-  border: none;
-  outline: none;
-  background: transparent;
-  color: #274176;
-  width: 100%;
-  padding: 5px 0;
-  min-width: 120px;
-  max-width:230px;
-}
-.global-search-suggest {
-  position: absolute;
-  top: 35px;
-  right: 0;
-  left: 0;
-  width: 98%;
-  background: #f5faff;
-  border: 1px solid #b6cffa;
-  border-radius: 7px;
-  box-shadow: 0 2px 8px rgba(33,60,138,.09);
-  z-index: 9999;
-  max-height: 180px;
-  overflow-y: auto;
-  display: none;
-  padding: 2px 0;
-}
-.global-search-suggest.open {display: block;}
-.global-search-suggest-item {
-  padding: 8px 18px;
-  cursor: pointer;
-  color: #125ad3;
-  font-size: 1.01rem;
-  border-bottom: 1px solid #e3f0fc;
-}
-.global-search-suggest-item:last-child {border-bottom:none;}
-.global-search-suggest-item:hover {
-  background: #dae8f8; color:#2a277a;
-}
-/* MAIN PAGE CONTENT */
 .container-main {
-  display: flex; justify-content: space-between; align-items: flex-start;
-  min-height: 750px; width: 100%; box-sizing: border-box; gap: 17px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+  min-height: 700px;
+  background: var(--white);
 }
 .sidebar, .sidebar-right {
-  width: 315px; min-width: 215px; max-width:340px;
-  background: var(--white); box-shadow: var(--shadow);
-  border-radius: 14px; margin-top: 4px; margin-bottom: 18px;
-  padding: 12px 13px 19px 24px; display: flex; flex-direction: column; align-items:flex-start; gap: 25px 0;
+  background: var(--blue1);
+  box-shadow: var(--shadow);
+  border-radius: 14px;
+  margin-top: 18px;
+  margin-bottom: 18px;
+  padding: 12px 13px 19px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+  gap: 25px 0;
 }
-.sidebar {margin-left: 26px;}
-.sidebar-right {margin-right: 26px;}
+.sidebar {margin-left: 17px;}
+.sidebar-right {margin-right: 17px;}
 .section-title {
   font-weight: 700; color: #274176; font-size: 1.12rem;
   margin-bottom: 7px; margin-top: 8px; letter-spacing:0.5px; user-select:none;
@@ -173,31 +217,76 @@ body {background-color: white;}
 }
 .expand-list.open { display: flex; }
 .expand-link, .expand-link:visited {
-  display: block; text-decoration: none; color: #1565c0; background: var(--blue3);
+  display: flex;
+  align-items: center;
+  text-decoration: none; color: #1565c0; background: var(--blue3);
   padding: 9px 18px; border-radius: 8px;
-  margin-bottom: 1px; font-size: 1.05rem; transition: background 0.20s, color .12s;
-  cursor: pointer; width:93%;
+  margin-bottom: 1px; font-size: 1.02rem; transition: background 0.20s, color .12s;
+  cursor: pointer; width:93%; font-weight: 470;
+  gap:7px;
 }
+.expand-link.sheet-link svg {
+  min-width: 19px; min-height: 19px; margin-right: 4px;
+}
+.expand-link.internal-link svg {
+  min-width: 19px; min-height: 19px; margin-right: 4px;
+}
+.expand-link.platform-amazon svg { min-width:20px;min-height:20px;margin-right:4px;}
+.expand-link.platform-walmart svg { min-width:20px;min-height:20px;margin-right:4px;}
+.expand-link.platform-ebay {color: #0064d2;}
+.expand-link.platform-ebay svg {margin-right:4px;}
+.expand-link.platform-macys {color: #cb333b;}
+.expand-link.platform-target svg {margin-right:4px;min-width:20px;min-height:20px;}
 .expand-link:hover {background: #bbdefb; color: #0f234c;}
 .center-content {
-  flex-grow:1; margin: 25px 12px 10px 12px; display: flex; flex-direction: column;
-  align-items: center; min-width: 330px; max-width: 1250px;
+  flex-grow:1; margin: 25px 12px 18px 12px; display: flex; flex-direction: column;
+  align-items: center; min-width: 330px; max-width: 1000px;
 }
 .codes-title {
-  font-weight:700; font-size:1.16rem; color: #1c336b; margin-bottom: 10px; margin-top:10px; user-select:none;
+  font-weight:700; font-size:1.14rem; color: #1c336b; margin-bottom: 10px; margin-top:10px; user-select:none;
 }
 .searchinput {
-  font-size: 1.07rem; border: 1.7px solid #d3e3fa; border-radius: 7px;
-  padding: 6px 14px; outline: 0; margin-bottom: 18px; min-width: 230px;
+  font-size: 1.06rem; border: 1.5px solid #d3e3fa; border-radius: 7px;
+  padding: 6px 14px; outline: 0; margin-bottom: 10px; min-width: 230px;
   background: var(--blue3); color: #14204a;
   box-shadow: 0 1px 8px rgba(50,80,120,.06);
   transition: border 0.18s;
-  max-width: 340px;
+  max-width: 320px;
 }
-.searchinput:focus { border: 1.7px solid #306aad;}
+.searchinput:focus { border: 1.5px solid #306aad;}
+.pattern-chat-center {
+  margin-bottom: 18px;
+  margin-top: -2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.pattern-chat-link {
+  display: inline-block;
+  font-size: 1.08rem;
+  font-weight: 570;
+  color: #125ad3;
+  background: linear-gradient(90deg, #e6efff 80%, #ddeaff 100%);
+  padding: 11px 25px;
+  border-radius: 9px;
+  text-decoration: none;
+  transition: background 0.19s, color .12s;
+  box-shadow: 0 1.5px 7px #adc7eb3e;
+  border: 1.3px solid #b2cdfc;
+  margin-top: 3px;
+}
+.pattern-chat-link:hover,
+.pattern-chat-link:focus {
+  background: #d7eaff;
+  color: #0f234c;
+  text-decoration: underline;
+  box-shadow: 0 5px 13px #2e5b8747;
+  border: 1.3px solid #8cabce;
+}
 .codes-2col-grid {
-  display:flex; justify-content:center; align-items:flex-start; gap: 50px; width:100%;
-  max-width:920px; margin-top:8px;
+  display:flex; justify-content:center; align-items:flex-start; gap: 40px; width:100%;
+  max-width:900px; margin-top:8px;
 }
 .codes-ulist {
   width:100%; padding-left: 0; margin: 0; list-style: none;
@@ -211,10 +300,10 @@ body {background-color: white;}
   width: 100%;
   background: var(--blue3);
   color: #1367be;
-  font-size: 1.04rem;
+  font-size: 1rem;
   font-weight: 500;
   border-radius: 8px;
-  padding: 14px 16px 13px 25px;
+  padding: 13px 14px 13px 22px;
   margin-bottom: 1px;
   transition: background 0.19s, color .11s;
   text-decoration:none; border: none; cursor: pointer; text-align:left;
@@ -224,142 +313,181 @@ body {background-color: white;}
   color: #0e1d3c;
   outline: none;
 }
-@media (max-width: 1100px) {
-  .codes-2col-grid {gap:18px;}
-  .codes-ulist {max-width:95vw;}
-  .center-content {max-width:96vw;}
-  .sidebar, .sidebar-right {width:196px;max-width:220px;min-width:120px;}
-  .header-left {padding-left: 10px;}
-  .header-right {padding-right: 10px;}
-}
-@media (max-width: 700px) {
-  .container-main {height:auto; flex-direction:column;}
-  .sidebar, .sidebar-right {display:none;}
-  .center-content {margin:12px 2vw;}
-  .codes-link {font-size:0.97rem;padding:9px 6px;}
-  .codes-title {margin-top:9px;}
-  .codes-2col-grid {flex-direction:column; gap:8px;}
-  .global-search-suggest {width: 95vw; left: 0;}
-  .header-bar {padding:20px 0 10px 0;}
-  .header-left {padding-left: 7vw;}
-  .header-right {padding-right: 7vw;}
-  .dqteam, .pattern-title {padding: 4px 12vw;}
-  .header-center {top: 0;}
-}
 </style>
 </head>
 <body>
-<!-- HEADER BAR -->
-<div class="header-bar">
-  <div class="header-left">
-    <div class="name">Siddhesh Gampawar</div>
-  </div>
-  <div class="header-center">
-    <div class="dqteam">DATA QUALITY TEAM</div>
-    <div class="pattern-title">PATTERN</div>
-  </div>
-  <div class="header-right">
-    <div class="global-search-container">
-      <span class="global-search-icon">&#128269;</span>
-      <input id="globalSearchInput" class="global-search-input" type="text" placeholder="Search anything on this page...">
-      <div id="globalSearchSuggest" class="global-search-suggest"></div>
+<div class="main-app-container">
+  <div class="header-bar">
+    <div class="header-left">
+      <div class="name">Siddhesh Gampawar</div>
     </div>
-  </div>
-</div>
-
-<div class="container-main">
-  <!-- LEFT SIDEBAR -->
-  <div class="sidebar">
-    <!-- Moved Daily Workflow Google Sheets to the Top -->
-    <div class="expand-section">
-      <div class="section-title" onclick="toggleSection('sheetSection', 'sheetArrow')">
-        <span>Daily Workflow Google Sheets</span>
-        <span class="expand-arrow" id="sheetArrow">&#9662;</span>
-      </div>
-      <div class="expand-list" id="sheetSection">
-        <a class="expand-link" href="https://docs.google.com/spreadsheets/d/1BgG1gnHxQYbOGFhNWBaE4DHEQWMLkKQvU1OX53hlnJE/edit?usp=sharing" target="_blank">1. Task Stamp</a>
-        <a class="expand-link" href="https://docs.google.com/spreadsheets/d/1W7HuJOt6KI2V6IMMWWwti__fLei9k2J7tcVQ671WWmg/edit?usp=sharing" target="_blank">2. POC During Leave US</a>
-        <a class="expand-link" href="https://docs.google.com/spreadsheets/d/1zLl7ZiPfS6nXF_XAUFzqFmSQhQM6mEDnu3arRYixdQg/edit?usp=sharing" target="_blank">3. Work From Home Tracker</a>
-        <a class="expand-link" href="https://docs.google.com/spreadsheets/d/14_l1U_hAMx6pkbwkN_VBsewWvks3yTjwOxTVbbHQI_A/edit?usp=sharing" target="_blank">4. US Brands PXM Template</a>
-        <a class="expand-link" href="https://docs.google.com/spreadsheets/d/1aH9NcxfhhjgLMJiJioQrJuk8NhUUEoUJABwl_kEXhS8/edit?gid=1854546926#gid=1854546926" target="_blank">5. EU Brand PXM Template</a>
-        <a class="expand-link" href="https://docs.google.com/spreadsheets/d/1qWv4QZru441kPXfGX4bgMJ9n8hDahwpXGIMooRXilT0/edit?usp=sharing" target="_blank">6. Image Stack Tracker US</a>
-        <a class="expand-link" href="https://docs.google.com/spreadsheets/d/1Le-lbEASnzIMGKvEfD_HofgtWTgJ3u2i5hIujNUwaO8/edit?usp=sharing" target="_blank">7. PXM Approved Sheet</a>
-      </div>
+    <div class="header-center">
+      <div class="dqteam">DATA QUALITY TEAM</div>
+      <div class="pattern-title">PATTERN</div>
     </div>
-    <div class="expand-section">
-      <div class="section-title" onclick="toggleSection('dqtrainingSection', 'dqtrainingArrow')">
-        <span>Data Quality Training Videos</span>
-        <span class="expand-arrow" id="dqtrainingArrow">&#9662;</span>
-      </div>
-      <div class="expand-list" id="dqtrainingSection">
-        <a class="expand-link" href="https://drive.google.com/drive/folders/184h7SdX_yOjys5bFFQHtGC-FFSRJwStg" target="_blank">DQ Training Video Folder</a>
-      </div>
-    </div>
-    <div class="expand-section">
-      <div class="section-title" onclick="toggleSection('trainingSection', 'trainingArrow')">
-        <span>Automation Training Videos</span>
-        <span class="expand-arrow" id="trainingArrow">&#9662;</span>
-      </div>
-      <div class="expand-list" id="trainingSection">
-        <a class="expand-link" href="https://drive.google.com/file/d/1HnKvF05xzdnigUUVnJ_aLT8BrxGUvm5D/view?usp=drive_link" target="_blank">1. Image Stack Automation</a>
-        <a class="expand-link" href="https://drive.google.com/file/d/1vWswpGNxALWzFnfatBHVmjg7t5F-Cp3q/view?usp=drive_link" target="_blank">2. Image Quality Check Automation</a>
-        <a class="expand-link" href="https://drive.google.com/file/d/1au1CqQHMcF19ba88hyTGzrnlYoEcLH6b/view?usp=drive_link" target="_blank">3. PXM Automation</a>
-        <a class="expand-link" href="https://drive.google.com/file/d/1j17eCQGp5VF8LuBciZu2VBQwklgWuI_X/view?usp=drive_link" target="_blank">4. PC/ MF Analysis Automation</a>
-        <a class="expand-link" href="https://drive.google.com/drive/u/0/folders/1tVxzHhm04nNwQZm1_yjj3SCO9XoPy6Pk" target="_blank">5. Other Training Video</a>
-        <a class="expand-link" href="https://drive.google.com/file/d/1qhE15MtW9NHHpc1vvg0QOdUhpLJPA9lO/view?usp=drive_link" target="_blank">6. Category Updating Predict</a>
-        <a class="expand-link" href="https://drive.google.com/file/d/1DhEraDLYmBTP6UjFIngPMarEziIo_Rjb/view?usp=drive_link" target="_blank">7. PC DNO Automation</a>
+    <div class="header-right">
+      <div class="global-search-container">
+        <span class="global-search-icon">&#128269;</span>
+        <input id="globalSearchInput" class="global-search-input" type="text" placeholder="Search on this page...">
+        <div id="globalSearchSuggest" class="global-search-suggest"></div>
       </div>
     </div>
   </div>
-  <!-- CENTER CONTENT: DQ AUTOMATION CODES split in two lists-->
-  <div class="center-content">
-    <span class="codes-title">DQ Automation Codes</span>
-    <input type="text" class="searchinput" placeholder="Search code/tool..." id="searchCodes" onkeyup="filterCodes2Col()">
-    <div class="codes-2col-grid">
-      <ul class="codes-ulist" id="codesUListLeft">
-        <li class="codes-li"><a href="https://colab.research.google.com/drive/1zaKq8gZo1gG26yOj0s0N7u3zNtdtkbcA?usp=sharing" class="codes-link" target="_blank">SEO Colour</a></li>
-        <li class="codes-li"><a href="https://colab.research.google.com/drive/1XVFrQ_ADmsIOOEW4sg8KEmEQVmOmmmVD?usp=sharing" class="codes-link" target="_blank">PXM</a></li>
-        <li class="codes-li"><a href="https://colab.research.google.com/drive/145QPjai0SDD7FdkzG13BBwOsziYSI4uF" class="codes-link" target="_blank">Image Stack</a></li>
-        <li class="codes-li"><a href="https://colab.research.google.com/drive/1oca5Dpk4W5ztFVzAWbail7zuXly0q6bb?usp=sharing" class="codes-link" target="_blank">Walmart DP SEO Scrap</a></li>
-        <li class="codes-li"><a href="https://colab.research.google.com/drive/18DsMuf0eJJNFwvEZdp1TONlAFzswIcDF?usp=sharing" class="codes-link" target="_blank">Category Updating Predict</a></li>
-        <li class="codes-li"><a href="https://colab.research.google.com/drive/1u14HFeArgEp8ljjk2WT66-sM51i-q9vM?usp=sharing" class="codes-link" target="_blank">PC- Listing Update EU</a></li>
-      </ul>
-      <ul class="codes-ulist" id="codesUListRight">
-        <li class="codes-li"><a href="https://colab.research.google.com/drive/1jX7K-IGFdC5r8F2Pn4dqAc-Xrz_rnekA?usp=sharing" class="codes-link" target="_blank">Image QC</a></li>
-        <li class="codes-li"><a href="https://create-clr-947577624254.us-west1.run.app/" class="codes-link" target="_blank">CLR</a></li>
-        <li class="codes-li"><a href="https://colab.research.google.com/drive/1xwK-aCgkqWk61BfglR0YNL3yF5zIyE0t?usp=sharing" class="codes-link" target="_blank">Shelf Create Master ID</a></li>
-        <li class="codes-li"><a href="https://colab.research.google.com/drive/1xQlMaVQBwdQBuhfbtGb1rdakIhm8VxKR?usp=sharing" class="codes-link" target="_blank">PC/Shelf Update</a></li>
-        <li class="codes-li"><a href="https://colab.research.google.com/drive/1xchnDp1zPyfR9hK4jwnGKYqFIk6nbGr1?usp=sharing" class="codes-link" target="_blank">PC DNO Automation</a></li>
-        <li class="codes-li"><a href="https://colab.research.google.com/drive/1kCouHjLN26Fuhb1v_JzGvqdZI7wGUf9w#scrollTo=c0W5FcQbvuX7" class="codes-link" target="_blank">Walmart Price & Variation QC</a></li>
-      </ul>
+  <div class="container-main">
+    <!-- Move Daily Workflow Google Sheets First -->
+    <div class="sidebar">
+      <div class="expand-section">
+        <div class="section-title" onclick="toggleSection('sheetSection', 'sheetArrow')">
+          <span>Daily Workflow Google Sheets</span>
+          <span class="expand-arrow" id="sheetArrow">&#9662;</span>
+        </div>
+        <div class="expand-list" id="sheetSection">
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/13hXAmVQMPxBqdQDD4laKCncwXmJLSPHYJ66ex5a977Y/edit?usp=sharing" target="_blank">
+            <svg width="19" height="19" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.2" fill="#21A561"/><rect x="5" y="7.75" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="11.25" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="14.75" width="14" height="1.5" rx=".4" fill="#fff"/></svg>
+            1. Brand Assignments - Global sheet
+          </a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/16qlNTCnIZqlmAdt5aXhs1qWrGf5kM2lZ5OpuN70g60s/edit?usp=sharing" target="_blank">
+            <svg width="19" height="19" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.2" fill="#21A561"/><rect x="5" y="7.75" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="11.25" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="14.75" width="14" height="1.5" rx=".4" fill="#fff"/></svg>
+            2. Recurring Task Sheet Data Quality
+          </a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/1EmTJv-aGuxG_E8L0UWfplsEh6K65oug7Z7YtySDCL5g/edit?usp=sharing" target="_blank">
+            <svg width="19" height="19" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.2" fill="#21A561"/><rect x="5" y="7.75" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="11.25" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="14.75" width="14" height="1.5" rx=".4" fill="#fff"/></svg>
+            3. DQ Issue Type (JR Smith Task Issues)
+          </a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/18qzzf2YbXDLLtIV7RgfylUnVOq9q3jNKLhfFC6KueyI/edit?usp=sharing" target="_blank">
+            <svg width="19" height="19" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.2" fill="#21A561"/><rect x="5" y="7.75" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="11.25" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="14.75" width="14" height="1.5" rx=".4" fill="#fff"/></svg>
+            4. EPM Review Sheet
+          </a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/1BgG1gnHxQYbOGFhNWBaE4DHEQWMLkKQvU1OX53hlnJE/edit?usp=sharing" target="_blank">
+            <svg width="19" height="19" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.2" fill="#21A561"/><rect x="5" y="7.75" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="11.25" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="14.75" width="14" height="1.5" rx=".4" fill="#fff"/></svg>
+            5. Task Stamp
+          </a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/1W7HuJOt6KI2V6IMMWWwti__fLei9k2J7tcVQ671WWmg/edit?usp=sharing" target="_blank">
+            <svg width="19" height="19" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.2" fill="#21A561"/><rect x="5" y="7.75" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="11.25" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="14.75" width="14" height="1.5" rx=".4" fill="#fff"/></svg>
+            6. POC During Leave US
+          </a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/1zLl7ZiPfS6nXF_XAUFzqFmSQhQM6mEDnu3arRYixdQg/edit?usp=sharing" target="_blank">
+            <svg width="19" height="19" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.2" fill="#21A561"/><rect x="5" y="7.75" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="11.25" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="14.75" width="14" height="1.5" rx=".4" fill="#fff"/></svg>
+            7. Work From Home Tracker
+          </a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/14_l1U_hAMx6pkbwkN_VBsewWvks3yTjwOxTVbbHQI_A/edit?usp=sharing" target="_blank">
+            <svg width="19" height="19" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.2" fill="#21A561"/><rect x="5" y="7.75" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="11.25" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="14.75" width="14" height="1.5" rx=".4" fill="#fff"/></svg>
+            8. US Brands PXM Template
+          </a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/1aH9NcxfhhjgLMJiJioQrJuk8NhUUEoUJABwl_kEXhS8/edit?gid=1854546926#gid=1854546926" target="_blank">
+            <svg width="19" height="19" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.2" fill="#21A561"/><rect x="5" y="7.75" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="11.25" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="14.75" width="14" height="1.5" rx=".4" fill="#fff"/></svg>
+            9. EU Brand PXM Template
+          </a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/1qWv4QZru441kPXfGX4bgMJ9n8hDahwpXGIMooRXilT0/edit?usp=sharing" target="_blank">
+            <svg width="19" height="19" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.2" fill="#21A561"/><rect x="5" y="7.75" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="11.25" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="14.75" width="14" height="1.5" rx=".4" fill="#fff"/></svg>
+            10. Image Stack Tracker US
+          </a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/1Le-lbEASnzIMGKvEfD_HofgtWTgJ3u2i5hIujNUwaO8/edit?usp=sharing" target="_blank">
+            <svg width="19" height="19" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.2" fill="#21A561"/><rect x="5" y="7.75" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="11.25" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="14.75" width="14" height="1.5" rx=".4" fill="#fff"/></svg>
+            11. PXM Approved Sheet
+          </a>
+        </div>
+      </div>
+      <div class="expand-section">
+        <div class="section-title" onclick="toggleSection('dqtrainingSection', 'dqtrainingArrow')">
+          <span>Data Quality Training Videos</span>
+          <span class="expand-arrow" id="dqtrainingArrow">&#9662;</span>
+        </div>
+        <div class="expand-list" id="dqtrainingSection" style="display:none;">
+          <a class="expand-link" href="https://drive.google.com/drive/folders/184h7SdX_yOjys5bFFQHtGC-FFSRJwStg" target="_blank">DQ Training Video Folder</a>
+        </div>
+      </div>
+      <div class="expand-section">
+        <div class="section-title" onclick="toggleSection('trainingSection', 'trainingArrow')">
+          <span>Automation Training Videos</span>
+          <span class="expand-arrow" id="trainingArrow">&#9662;</span>
+        </div>
+        <div class="expand-list" id="trainingSection" style="display:none;">
+          <a class="expand-link" href="https://drive.google.com/file/d/1HnKvF05xzdnigUUVnJ_aLT8BrxGUvm5D/view?usp=drive_link" target="_blank">1. Image Stack Automation</a>
+          <a class="expand-link" href="https://drive.google.com/file/d/1vWswpGNxALWzFnfatBHVmjg7t5F-Cp3q/view?usp=drive_link" target="_blank">2. Image Quality Check Automation</a>
+          <a class="expand-link" href="https://drive.google.com/file/d/1au1CqQHMcF19ba88hyTGzrnlYoEcLH6b/view?usp=drive_link" target="_blank">3. PXM Automation</a>
+          <a class="expand-link" href="https://drive.google.com/file/d/1j17eCQGp5VF8LuBciZu2VBQwklgWuI_X/view?usp=drive_link" target="_blank">4. PC/ MF Analysis Automation</a>
+          <a class="expand-link" href="https://drive.google.com/drive/u/0/folders/1tVxzHhm04nNwQZm1_yjj3SCO9XoPy6Pk" target="_blank">5. Other Training Video</a>
+          <a class="expand-link" href="https://drive.google.com/file/d/1qhE15MtW9NHHpc1vvg0QOdUhpLJPA9lO/view?usp=drive_link" target="_blank">6. Category Updating Predict</a>
+          <a class="expand-link" href="https://drive.google.com/file/d/1DhEraDLYmBTP6UjFIngPMarEziIo_Rjb/view?usp=drive_link" target="_blank">7. PC DNO Automation</a>
+        </div>
+      </div>
     </div>
-  </div>
-  <!-- RIGHT SIDEBAR (PLATFORM/SELLER CENTER) -->
-  <div class="sidebar-right">
-    <div class="expand-section">
-      <div class="section-title" onclick="toggleSection('platformSection','platformArrow')">
-        <span>Platform Links</span>
-        <span class="expand-arrow" id="platformArrow">&#9662;</span>
+    <div class="center-content">
+      <span class="codes-title">DQ Automation Codes</span>
+      <input type="text" class="searchinput" placeholder="Search code/tool..." id="searchCodes" onkeyup="filterCodes2Col()">
+      <div class="pattern-chat-center">
+        <a class="pattern-chat-link" href="https://chat.pattern.com/c/4badb54e-c8f2-4fe7-9931-3f9fd87fe6e9" target="_blank">💬 Pattern Chat &rarr;</a>
       </div>
-      <div class="expand-list" id="platformSection">
-        <a class="expand-link" href="https://pattern.amplifi.io/" target="_blank">PXM</a>
-        <a class="expand-link" href="https://www.useshelf.com/receiving/purchase-orders" target="_blank">PC/ Shelf</a>
-        <a class="expand-link" href="https://predict.pattern.com/insights/at-a-glance/sales-overview" target="_blank">Predict</a>
-        <a class="expand-link" href="https://smartq.pureforyou.com/collections/all?sort=asc" target="_blank">Shopify DP</a>
-        <a class="expand-link" href="https://chat.pattern.com/c/4badb54e-c8f2-4fe7-9931-3f9fd87fe6e9" target="_blank">Pattern Chat</a>
+      <div class="codes-2col-grid">
+        <ul class="codes-ulist" id="codesUListLeft">
+          <li class="codes-li"><a href="https://colab.research.google.com/drive/1zaKq8gZo1gG26yOj0s0N7u3zNtdtkbcA?usp=sharing" class="codes-link" target="_blank">SEO Colour</a></li>
+          <li class="codes-li"><a href="https://colab.research.google.com/drive/1XVFrQ_ADmsIOOEW4sg8KEmEQVmOmmmVD?usp=sharing" class="codes-link" target="_blank">PXM</a></li>
+          <li class="codes-li"><a href="https://colab.research.google.com/drive/145QPjai0SDD7FdkzG13BBwOsziYSI4uF" class="codes-link" target="_blank">Image Stack</a></li>
+          <li class="codes-li"><a href="https://colab.research.google.com/drive/1oca5Dpk4W5ztFVzAWbail7zuXly0q6bb?usp=sharing" class="codes-link" target="_blank">Walmart DP SEO Scrap</a></li>
+          <li class="codes-li"><a href="https://colab.research.google.com/drive/18DsMuf0eJJNFwvEZdp1TONlAFzswIcDF?usp=sharing" class="codes-link" target="_blank">Category Updating Predict</a></li>
+          <li class="codes-li"><a href="https://colab.research.google.com/drive/1u14HFeArgEp8ljjk2WT66-sM51i-q9vM?usp=sharing" class="codes-link" target="_blank">PC- Listing Update EU</a></li>
+        </ul>
+        <ul class="codes-ulist" id="codesUListRight">
+          <li class="codes-li"><a href="https://colab.research.google.com/drive/1jX7K-IGFdC5r8F2Pn4dqAc-Xrz_rnekA?usp=sharing" class="codes-link" target="_blank">Image QC</a></li>
+          <li class="codes-li"><a href="https://create-clr-947577624254.us-west1.run.app/" class="codes-link" target="_blank">CLR</a></li>
+          <li class="codes-li"><a href="https://colab.research.google.com/drive/1xwK-aCgkqWk61BfglR0YNL3yF5zIyE0t?usp=sharing" class="codes-link" target="_blank">Shelf Create Master ID</a></li>
+          <li class="codes-li"><a href="https://colab.research.google.com/drive/1xQlMaVQBwdQBuhfbtGb1rdakIhm8VxKR?usp=sharing" class="codes-link" target="_blank">PC/Shelf Update</a></li>
+          <li class="codes-li"><a href="https://colab.research.google.com/drive/1xchnDp1zPyfR9hK4jwnGKYqFIk6nbGr1?usp=sharing" class="codes-link" target="_blank">PC DNO Automation</a></li>
+          <li class="codes-li"><a href="https://colab.research.google.com/drive/1kCouHjLN26Fuhb1v_JzGvqdZI7wGUf9w#scrollTo=c0W5FcQbvuX7" class="codes-link" target="_blank">Walmart Price & Variation QC</a></li>
+        </ul>
       </div>
     </div>
-    <div class="expand-section">
-      <div class="section-title" onclick="toggleSection('sellerSection','sellerArrow')">
-        <span>Seller Center Links</span>
-        <span class="expand-arrow" id="sellerArrow">&#9662;</span>
+    <div class="sidebar-right">
+      <div class="expand-section">
+        <div class="section-title" onclick="toggleSection('platformSection','platformArrow')">
+          <span>Platform Links</span>
+          <span class="expand-arrow" id="platformArrow">&#9662;</span>
+        </div>
+        <div class="expand-list open" id="platformSection">
+          <a class="expand-link internal-link" href="https://pattern.amplifi.io/" target="_blank">
+            <svg width="19" height="19" fill="none" viewBox="0 0 24 24"><rect width="24" height="24" rx="7" fill="#193a83"/>
+            <path d="M10 8.5v-1A2.5 2.5 0 0 1 12.5 5h5A2.5 2.5 0 0 1 20 7.5v5A2.5 2.5 0 0 1 17.5 15h-1m-3 0v1A2.5 2.5 0 0 1 11.5 20h-5A2.5 2.5 0 0 1 4 17.5v-5A2.5 2.5 0 0 1 6.5 10h1" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>
+            PXM
+          </a>
+          <a class="expand-link internal-link" href="https://www.useshelf.com/receiving/purchase-orders" target="_blank">
+            <svg width="19" height="19" fill="none" viewBox="0 0 24 24"><rect width="24" height="24" rx="7" fill="#193a83"/>
+            <path d="M8.3 10.47c.14-2.12 1.81-3.41 4.08-3.4h3.77m-5.83 5.03c.18 1.87 1.38 2.87 3.62 2.86h3.21" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>
+            PC/ Shelf
+          </a>
+          <a class="expand-link internal-link" href="https://predict.pattern.com/insights/at-a-glance/sales-overview" target="_blank">
+            <svg width="19" height="19" fill="none" viewBox="0 0 24 24"><rect width="24" height="24" rx="7" fill="#193a83"/><path d="M6 14l2.29-2.29c.39-.39 1.01-.39 1.39 0L12 14.01l5.29-5.3a.9959.9959 0 0 1 1.42 0L20 11" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/></svg>
+            Predict
+          </a>
+        </div>
       </div>
-      <div class="expand-list" id="sellerSection">
-        <a class="expand-link" href="https://sellercentral.amazon.com/" target="_blank">Amazon Seller Central</a>
-        <a class="expand-link" href="https://login.account.wal-mart.com/authorize" target="_blank">Walmart Seller Center</a>
-        <a class="expand-link" href="https://logonservices.oauth.iam.partnersonline.com/v1/login" target="_blank">Target Seller Center</a>
-        <a class="expand-link" href="" target="_blank">Macy’s</a>
-        <a class="expand-link" href="" target="_blank">Ebay</a>
+      <div class="expand-section">
+        <div class="section-title" onclick="toggleSection('sellerSection','sellerArrow')">
+          <span>Seller Center Links</span>
+          <span class="expand-arrow" id="sellerArrow">&#9662;</span>
+        </div>
+        <div class="expand-list open" id="sellerSection">
+          <a class="expand-link platform-amazon" href="https://sellercentral.amazon.com/" target="_blank">
+            <svg width="20" height="19" viewBox="0 0 74 74"><g><ellipse rx="36.5" ry="36.5" cx="37" cy="37" fill="#fff" /><text x="7" y="52" font-size="42" font-weight="bold" fill="#ff9900" font-family="Arial,Helvetica,sans-serif">a</text><circle cx="46" cy="55" r="7" fill="#ff9900"/><text x="42" y="60" font-size="18" font-weight="bold" fill="#fff">z</text></g></svg>
+            Amazon Seller Central
+          </a>
+          <a class="expand-link platform-walmart" href="https://login.account.wal-mart.com/authorize" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="#fff"/><g><circle cx="20" cy="20" r="13" fill="#004e96"/><g stroke="#ffd200" stroke-width="2.5" stroke-linecap="round"><line x1="20" y1="6.2" x2="20" y2="12.3"/><line x1="20" y1="27.7" x2="20" y2="33.8"/><line x1="6.2" y1="20" x2="12.3" y2="20"/><line x1="27.7" y1="20" x2="33.8" y2="20"/><line x1="9.51" y1="9.53" x2="13.99" y2="13.99"/><line x1="26.01" y1="26.01" x2="30.49" y2="30.47"/><line x1="30.49" y1="9.53" x2="26.01" y2="13.99"/><line x1="13.99" y1="26.01" x2="9.51" y2="30.47"/></g></g></svg>
+            Walmart Seller Center
+          </a>
+          <a class="expand-link platform-target" href="https://logonservices.oauth.iam.partnersonline.com/v1/login" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#fff"/><circle cx="20" cy="20" r="13" fill="#cc071e"/><circle cx="20" cy="20" r="8.5" fill="#fff"/><circle cx="20" cy="20" r="4" fill="#cc071e"/></svg>
+            Target Seller Center
+          </a>
+          <a class="expand-link platform-macys" href="#" target="_blank">
+            <svg width="19" height="19" viewBox="0 0 24 24"><polygon points="12,2 15,9.5 23,9.5 16.5,14.5 19.5,22 12,17.5 4.5,22 7.5,14.5 1,9.5 9,9.5" fill="#cb333b" stroke="#a12a38" stroke-width="1"/></svg>
+            Macy’s
+          </a>
+          <a class="expand-link platform-ebay" href="#" target="_blank">
+            <svg width="32" height="18" viewBox="0 0 48 18"><text y="15" font-size="15" font-family="Arial, Helvetica, sans-serif" fill="#0064D2">ebay</text></svg>
+            eBay
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -374,6 +502,18 @@ function toggleSection(id, arrowId){
     el.classList.add("open"); arr.style.transform="rotate(180deg)";
   }
 }
+document.addEventListener("DOMContentLoaded",function(){
+  toggleSection('sheetSection','sheetArrow');
+  // Ensure videos section are closed:
+  document.getElementById('dqtrainingSection').style.display = 'none';
+  document.getElementById('dqtrainingArrow').style.transform = "rotate(0deg)";
+  document.getElementById('trainingSection').style.display = 'none';
+  document.getElementById('trainingArrow').style.transform = "rotate(0deg)";
+  document.getElementById('platformSection').classList.add('open');
+  document.getElementById('sellerSection').classList.add('open');
+});
+
+// Codes search
 function filterCodes2Col(){
   var input = document.getElementById("searchCodes");
   var filter = input.value.toUpperCase();
@@ -396,6 +536,8 @@ function filterCodes2Col(){
   filterList("codesUListLeft");
   filterList("codesUListRight");
 }
+
+// Global search (top right)
 const globalSearchEl = document.getElementById('globalSearchInput');
 const suggestEl = document.getElementById('globalSearchSuggest');
 function getAllSearchableLinks() {
@@ -414,7 +556,6 @@ function getAllSearchableLinks() {
   return items;
 }
 let allPageItems = getAllSearchableLinks();
-
 globalSearchEl.addEventListener('input', function() {
   let value = globalSearchEl.value.trim().toLowerCase();
   suggestEl.innerHTML = '';
@@ -456,13 +597,6 @@ globalSearchEl.addEventListener('keydown',function(e){
     openSuggest.click();
     e.preventDefault();
   }
-});
-document.addEventListener("DOMContentLoaded",function(){
-  toggleSection('dqtrainingSection','dqtrainingArrow')
-  toggleSection('trainingSection','trainingArrow')
-  toggleSection('sheetSection','sheetArrow')
-  toggleSection('platformSection','platformArrow')
-  toggleSection('sellerSection','sellerArrow')
 });
 </script>
 </body>
