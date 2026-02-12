@@ -1,48 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+background-color: #f6f9fd; /* Slightly darker off-white */
+}
+</style>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="UTF-8">
 <title>Pattern Automation Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 :root {
-  --blue1: #e3f0fc;
-  --blue2: #3566a8;
-  --blue3: #ddeaff;
-  --white: #fcfcfc;
+  --blue1: #d0e7fa;
+  --blue2: #295188;
+  --blue3: #d0e4fa;
+  --blue4: #12519b;
+  --white: #f7f7f7;
   --shadow: 0 2px 14px rgba(33,60,138,0.07);
-  --internalIconColor: #193a83;
 }
 html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
+  margin: 0; padding: 0;
   min-height: 100vh;
   font-family: 'Segoe UI', Arial, sans-serif;
-  background: linear-gradient(135deg, var(--blue1) 60%, var(--blue2) 100%);
+  background: linear-gradient(135deg, var(--blue1) 66%, var(--blue2) 100%);
 }
-body {
-  min-height: 100vh;
-  background: linear-gradient(135deg, var(--blue1) 60%, var(--blue2) 100%);
-}
+body {min-height:100vh;}
 .main-app-container {
   margin: 0 auto;
   min-width: 315px;
   max-width: 1600px;
   min-height: 100vh;
-  background: var(--white);
-  box-shadow: 0 1px 18px rgba(50,80,120,.05);
+  background: transparent;
 }
 .header-bar {
   width: 100%;
-  background: var(--white);
-  box-shadow: 0 2px 12px rgba(120,150,180,.07);
+  background: transparent;
+  margin: 0;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   position: relative;
   z-index: 10;
-  min-height: 80px;
+  min-height: 94px;
+  padding-top:18px; /* Push all down to let top margin show! */
 }
 .header-left, .header-right {
   display: flex;
@@ -51,7 +58,7 @@ body {
 }
 .header-left {
   min-width: 170px;
-  padding-left: 18px;
+  padding-left: 30px;
 }
 .name {
   font-size: 1rem;
@@ -59,13 +66,13 @@ body {
   font-weight: 500;
   background: #EDF6FF;
   border-radius: 7px;
-  padding: 6px 19px 7px 12px;
+  padding: 8px 19px 8px 14px;
   user-select: none;
   box-shadow: 0 1px 8px rgba(50,80,120,.05);
 }
 .header-right {
   min-width: auto;
-  padding-right: 18px;
+  padding-right: 29px;
 }
 .global-search-container {
   display: flex;
@@ -73,7 +80,7 @@ body {
   background: var(--white);
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(33,60,138,0.12);
-  padding: 0 10px 0 6px;
+  padding: 0 12px 0 6px;
   min-width: 190px;
   max-width: 258px;
   width: 100%;
@@ -100,7 +107,7 @@ body {
 }
 .global-search-suggest {
   position: absolute;
-  top: 47px;
+  top: 57px;
   right: 0;
   width: 258px;
   background: #f3faff;
@@ -163,10 +170,10 @@ body {
   .codes-ulist {max-width:95vw;}
   .center-content {max-width:98vw;}
   .sidebar, .sidebar-right {width:180px;max-width:220px;min-width:110px;}
-  .header-bar {min-height:60px;}
+  .header-bar {min-height:68px;}
   .header-left, .header-right {height: 60px;}
   .header-center {height: 60px;}
-  .dqteam, .pattern-title {font-size:1.2rem; padding: 2px 12vw;}
+  .dqteam, .pattern-title {font-size:1.2rem; padding: 2px 10vw;}
 }
 @media (max-width: 800px) {
   .container-main {flex-direction:column;}
@@ -182,18 +189,18 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 16px;
+  gap: 22px;
   width: 100%;
   min-height: 700px;
-  background: var(--white);
+  background:transparent;
 }
 .sidebar, .sidebar-right {
-  background: var(--blue1);
-  box-shadow: var(--shadow);
+  background: white;
+  box-shadow: 0 3px 32px 0 #b5d5fb12;
   border-radius: 14px;
   margin-top: 18px;
   margin-bottom: 18px;
-  padding: 12px 13px 19px 24px;
+  padding: 16px 14px 23px 24px;
   display: flex;
   flex-direction: column;
   align-items:flex-start;
@@ -202,7 +209,7 @@ body {
 .sidebar {margin-left: 17px;}
 .sidebar-right {margin-right: 17px;}
 .section-title {
-  font-weight: 700; color: #274176; font-size: 1.12rem;
+  font-weight: 700; color: #235bb7; font-size: 1.16rem;
   margin-bottom: 7px; margin-top: 8px; letter-spacing:0.5px; user-select:none;
   display: flex; align-items:center; gap: 7px;
 }
@@ -216,28 +223,38 @@ body {
   gap: 4.5px; margin: 3px 0 0 7px;
 }
 .expand-list.open { display: flex; }
+
+/* === OPTIONS: Use same background as .dqteam, with dark font === */
 .expand-link, .expand-link:visited {
   display: flex;
   align-items: center;
-  text-decoration: none; color: #1565c0; background: var(--blue3);
-  padding: 9px 18px; border-radius: 8px;
-  margin-bottom: 1px; font-size: 1.02rem; transition: background 0.20s, color .12s;
-  cursor: pointer; width:93%; font-weight: 470;
-  gap:7px;
+  text-decoration: none;
+  background: linear-gradient(90deg, #b2cdfc 70%, #f2f6fa 100%) !important;
+  color: #21355E !important; /* dark blue, readable text */
+  padding: 11px 18px;
+  border-radius: 8px;
+  margin-bottom: 7px;
+  font-size: 1.07rem;
+  font-weight: 470;
+  cursor: pointer;
+  width:94%;
+  gap:8px;
+  border: none;
+  box-shadow: 0 1.5px 7px #b4c9fe28;
+  transition: background 0.21s, color .12s, box-shadow .18s;
 }
-.expand-link.sheet-link svg {
-  min-width: 19px; min-height: 19px; margin-right: 4px;
+.expand-link.sheet-link svg {min-width: 19px;min-height: 19px; margin-right: 6px;}
+.expand-link.internal-link svg {min-width: 19px;min-height: 19px;margin-right: 6px;}
+.expand-link.platform-amazon svg, .expand-link.platform-walmart svg,
+.expand-link.platform-target svg {min-width:20px;min-height:20px;margin-right:7px;}
+.expand-link.platform-ebay {color: #fff;}
+.expand-link.platform-ebay svg {margin-right:7px;}
+.expand-link.platform-macys svg {margin-right:7px;}
+.expand-link:hover {
+  background: linear-gradient(91deg, #101e63 70%, #387fc6 100%);
+  color:white !important;
+  box-shadow:0 5px 16px #3264a866;
 }
-.expand-link.internal-link svg {
-  min-width: 19px; min-height: 19px; margin-right: 4px;
-}
-.expand-link.platform-amazon svg { min-width:20px;min-height:20px;margin-right:4px;}
-.expand-link.platform-walmart svg { min-width:20px;min-height:20px;margin-right:4px;}
-.expand-link.platform-ebay {color: #0064d2;}
-.expand-link.platform-ebay svg {margin-right:4px;}
-.expand-link.platform-macys {color: #cb333b;}
-.expand-link.platform-target svg {margin-right:4px;min-width:20px;min-height:20px;}
-.expand-link:hover {background: #bbdefb; color: #0f234c;}
 .center-content {
   flex-grow:1; margin: 25px 12px 18px 12px; display: flex; flex-direction: column;
   align-items: center; min-width: 330px; max-width: 1000px;
@@ -248,8 +265,8 @@ body {
 .searchinput {
   font-size: 1.06rem; border: 1.5px solid #d3e3fa; border-radius: 7px;
   padding: 6px 14px; outline: 0; margin-bottom: 10px; min-width: 230px;
-  background: var(--blue3); color: #14204a;
-  box-shadow: 0 1px 8px rgba(50,80,120,.06);
+  background: var(--blue3); color: #234072;
+  box-shadow: 0 1px 10px #9dd5f838;
   transition: border 0.18s;
   max-width: 320px;
 }
@@ -262,27 +279,28 @@ body {
   justify-content: center;
   width: 100%;
 }
+/* Pattern Chat button NOT CHANGED - keep as is! */
 .pattern-chat-link {
   display: inline-block;
-  font-size: 1.08rem;
+  font-size: 1.10rem;
   font-weight: 570;
-  color: #125ad3;
-  background: linear-gradient(90deg, #e6efff 80%, #ddeaff 100%);
-  padding: 11px 25px;
-  border-radius: 9px;
+  color: #fff;
+  background: linear-gradient(96deg, #114077 75%, #2b94db 100%);
+  padding: 13px 27px;
+  border-radius: 10px;
   text-decoration: none;
-  transition: background 0.19s, color .12s;
-  box-shadow: 0 1.5px 7px #adc7eb3e;
-  border: 1.3px solid #b2cdfc;
+  transition: background 0.21s, color .11s, box-shadow .16s;
+  box-shadow: 0 1.5px 8px #adc7eb35;
+  border: none;
   margin-top: 3px;
 }
 .pattern-chat-link:hover,
 .pattern-chat-link:focus {
-  background: #d7eaff;
-  color: #0f234c;
+  background: linear-gradient(93deg, #3179e9 75%, #2bdbd4 100%);
+  color: #fff !important;
   text-decoration: underline;
   box-shadow: 0 5px 13px #2e5b8747;
-  border: 1.3px solid #8cabce;
+  border: none;
 }
 .codes-2col-grid {
   display:flex; justify-content:center; align-items:flex-start; gap: 40px; width:100%;
@@ -295,27 +313,31 @@ body {
 .codes-li {
   padding:0; margin:0; width: 99%; display: block;
 }
+/* === CODES-LINK, same as .expand-link === */
 .codes-link, .codes-link:visited {
   display: block;
   width: 100%;
-  background: var(--blue3);
-  color: #1367be;
+  background: linear-gradient(90deg, #b2cdfc 70%, #f2f6fa 100%) !important;
+  color: #21355E !important; /* dark blue, readable text */
   font-size: 1rem;
   font-weight: 500;
   border-radius: 8px;
   padding: 13px 14px 13px 22px;
-  margin-bottom: 1px;
-  transition: background 0.19s, color .11s;
-  text-decoration:none; border: none; cursor: pointer; text-align:left;
+  margin-bottom: 8px;
+  border: none;
+  transition: background 0.20s, color .11s, box-shadow .14s;
+  text-decoration:none; cursor: pointer; text-align:left;
+  box-shadow:0 1.5px 7px #b4c9fe26;
 }
 .codes-link:hover, .codes-link:focus {
-  background: #bbdefb;
-  color: #0e1d3c;
+  background: linear-gradient(91deg, #101e63 70%, #387fc6 100%);
+  color: #fff !important;
   outline: none;
 }
 </style>
 </head>
 <body>
+<div style="height:20px;"></div> <!-- Top margin for visibility -->
 <div class="main-app-container">
   <div class="header-bar">
     <div class="header-left">
@@ -484,7 +506,7 @@ body {
             Macy’s
           </a>
           <a class="expand-link platform-ebay" href="#" target="_blank">
-            <svg width="32" height="18" viewBox="0 0 48 18"><text y="15" font-size="15" font-family="Arial, Helvetica, sans-serif" fill="#0064D2">ebay</text></svg>
+            <svg width="32" height="18" viewBox="0 0 48 18"><text y="15" font-size="15" font-family="Arial, Helvetica, sans-serif" fill="#fff">ebay</text></svg>
             eBay
           </a>
         </div>
@@ -504,7 +526,6 @@ function toggleSection(id, arrowId){
 }
 document.addEventListener("DOMContentLoaded",function(){
   toggleSection('sheetSection','sheetArrow');
-  // Ensure videos section are closed:
   document.getElementById('dqtrainingSection').style.display = 'none';
   document.getElementById('dqtrainingArrow').style.transform = "rotate(0deg)";
   document.getElementById('trainingSection').style.display = 'none';
@@ -512,8 +533,6 @@ document.addEventListener("DOMContentLoaded",function(){
   document.getElementById('platformSection').classList.add('open');
   document.getElementById('sellerSection').classList.add('open');
 });
-
-// Codes search
 function filterCodes2Col(){
   var input = document.getElementById("searchCodes");
   var filter = input.value.toUpperCase();
@@ -536,8 +555,6 @@ function filterCodes2Col(){
   filterList("codesUListLeft");
   filterList("codesUListRight");
 }
-
-// Global search (top right)
 const globalSearchEl = document.getElementById('globalSearchInput');
 const suggestEl = document.getElementById('globalSearchSuggest');
 function getAllSearchableLinks() {
@@ -598,6 +615,10 @@ globalSearchEl.addEventListener('keydown',function(e){
     e.preventDefault();
   }
 });
+</script>
+</body>
+</html>
+<script>
 </script>
 </body>
 </html>
