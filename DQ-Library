@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -10,24 +11,22 @@
   --blue3: #ddeaff;
   --white: #fcfcfc;
   --shadow: 0 2px 14px rgba(33,60,138,0.07);
+  --internalIconColor: #193a83;
 }
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
   min-height: 100vh;
-  box-sizing: border-box;
   font-family: 'Segoe UI', Arial, sans-serif;
   background: linear-gradient(135deg, var(--blue1) 60%, var(--blue2) 100%);
 }
 body {
   min-height: 100vh;
   background: linear-gradient(135deg, var(--blue1) 60%, var(--blue2) 100%);
-  box-sizing: border-box;
 }
 .main-app-container {
   margin: 0 auto;
-  padding: 0;
   min-width: 315px;
   max-width: 1600px;
   min-height: 100vh;
@@ -37,8 +36,6 @@ body {
 .header-bar {
   width: 100%;
   background: var(--white);
-  margin: 0;
-  padding: 0;
   box-shadow: 0 2px 12px rgba(120,150,180,.07);
   display: flex;
   align-items: flex-start;
@@ -105,7 +102,6 @@ body {
   position: absolute;
   top: 47px;
   right: 0;
-  left: unset;
   width: 258px;
   background: #f3faff;
   border: 1px solid #b6cffa;
@@ -131,7 +127,6 @@ body {
   background: #ddeaff; color:#2a277a;
 }
 .header-center {
-  flex: 0 0 auto;
   left: 0; right: 0; top: 0;
   height: 80px;
   position: absolute;
@@ -222,11 +217,26 @@ body {
 }
 .expand-list.open { display: flex; }
 .expand-link, .expand-link:visited {
-  display: block; text-decoration: none; color: #1565c0; background: var(--blue3);
+  display: flex;
+  align-items: center;
+  text-decoration: none; color: #1565c0; background: var(--blue3);
   padding: 9px 18px; border-radius: 8px;
   margin-bottom: 1px; font-size: 1.02rem; transition: background 0.20s, color .12s;
-  cursor: pointer; width:93%;
+  cursor: pointer; width:93%; font-weight: 470;
+  gap:7px;
 }
+.expand-link.sheet-link svg {
+  min-width: 19px; min-height: 19px; margin-right: 4px;
+}
+.expand-link.internal-link svg {
+  min-width: 19px; min-height: 19px; margin-right: 4px;
+}
+.expand-link.platform-amazon svg { min-width:20px;min-height:20px;margin-right:4px;}
+.expand-link.platform-walmart svg { min-width:20px;min-height:20px;margin-right:4px;}
+.expand-link.platform-ebay {color: #0064d2;}
+.expand-link.platform-ebay svg {margin-right:4px;}
+.expand-link.platform-macys {color: #cb333b;}
+.expand-link.platform-target svg {margin-right:4px;min-width:20px;min-height:20px;}
 .expand-link:hover {background: #bbdefb; color: #0f234c;}
 .center-content {
   flex-grow:1; margin: 25px 12px 18px 12px; display: flex; flex-direction: column;
@@ -237,13 +247,43 @@ body {
 }
 .searchinput {
   font-size: 1.06rem; border: 1.5px solid #d3e3fa; border-radius: 7px;
-  padding: 6px 14px; outline: 0; margin-bottom: 18px; min-width: 230px;
+  padding: 6px 14px; outline: 0; margin-bottom: 10px; min-width: 230px;
   background: var(--blue3); color: #14204a;
   box-shadow: 0 1px 8px rgba(50,80,120,.06);
   transition: border 0.18s;
   max-width: 320px;
 }
 .searchinput:focus { border: 1.5px solid #306aad;}
+.pattern-chat-center {
+  margin-bottom: 18px;
+  margin-top: -2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.pattern-chat-link {
+  display: inline-block;
+  font-size: 1.08rem;
+  font-weight: 570;
+  color: #125ad3;
+  background: linear-gradient(90deg, #e6efff 80%, #ddeaff 100%);
+  padding: 11px 25px;
+  border-radius: 9px;
+  text-decoration: none;
+  transition: background 0.19s, color .12s;
+  box-shadow: 0 1.5px 7px #adc7eb3e;
+  border: 1.3px solid #b2cdfc;
+  margin-top: 3px;
+}
+.pattern-chat-link:hover,
+.pattern-chat-link:focus {
+  background: #d7eaff;
+  color: #0f234c;
+  text-decoration: underline;
+  box-shadow: 0 5px 13px #2e5b8747;
+  border: 1.3px solid #8cabce;
+}
 .codes-2col-grid {
   display:flex; justify-content:center; align-items:flex-start; gap: 40px; width:100%;
   max-width:900px; margin-top:8px;
@@ -302,13 +342,50 @@ body {
           <span class="expand-arrow" id="sheetArrow">&#9662;</span>
         </div>
         <div class="expand-list" id="sheetSection">
-          <a class="expand-link" href="https://docs.google.com/spreadsheets/d/1BgG1gnHxQYbOGFhNWBaE4DHEQWMLkKQvU1OX53hlnJE/edit?usp=sharing" target="_blank">1. Task Stamp</a>
-          <a class="expand-link" href="https://docs.google.com/spreadsheets/d/1W7HuJOt6KI2V6IMMWWwti__fLei9k2J7tcVQ671WWmg/edit?usp=sharing" target="_blank">2. POC During Leave US</a>
-          <a class="expand-link" href="https://docs.google.com/spreadsheets/d/1zLl7ZiPfS6nXF_XAUFzqFmSQhQM6mEDnu3arRYixdQg/edit?usp=sharing" target="_blank">3. Work From Home Tracker</a>
-          <a class="expand-link" href="https://docs.google.com/spreadsheets/d/14_l1U_hAMx6pkbwkN_VBsewWvks3yTjwOxTVbbHQI_A/edit?usp=sharing" target="_blank">4. US Brands PXM Template</a>
-          <a class="expand-link" href="https://docs.google.com/spreadsheets/d/1aH9NcxfhhjgLMJiJioQrJuk8NhUUEoUJABwl_kEXhS8/edit?gid=1854546926#gid=1854546926" target="_blank">5. EU Brand PXM Template</a>
-          <a class="expand-link" href="https://docs.google.com/spreadsheets/d/1qWv4QZru441kPXfGX4bgMJ9n8hDahwpXGIMooRXilT0/edit?usp=sharing" target="_blank">6. Image Stack Tracker US</a>
-          <a class="expand-link" href="https://docs.google.com/spreadsheets/d/1Le-lbEASnzIMGKvEfD_HofgtWTgJ3u2i5hIujNUwaO8/edit?usp=sharing" target="_blank">7. PXM Approved Sheet</a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/13hXAmVQMPxBqdQDD4laKCncwXmJLSPHYJ66ex5a977Y/edit?usp=sharing" target="_blank">
+            <svg width="19" height="19" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.2" fill="#21A561"/><rect x="5" y="7.75" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="11.25" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="14.75" width="14" height="1.5" rx=".4" fill="#fff"/></svg>
+            1. Brand Assignments - Global sheet
+          </a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/16qlNTCnIZqlmAdt5aXhs1qWrGf5kM2lZ5OpuN70g60s/edit?usp=sharing" target="_blank">
+            <svg width="19" height="19" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.2" fill="#21A561"/><rect x="5" y="7.75" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="11.25" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="14.75" width="14" height="1.5" rx=".4" fill="#fff"/></svg>
+            2. Recurring Task Sheet Data Quality
+          </a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/1EmTJv-aGuxG_E8L0UWfplsEh6K65oug7Z7YtySDCL5g/edit?usp=sharing" target="_blank">
+            <svg width="19" height="19" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.2" fill="#21A561"/><rect x="5" y="7.75" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="11.25" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="14.75" width="14" height="1.5" rx=".4" fill="#fff"/></svg>
+            3. DQ Issue Type (JR Smith Task Issues)
+          </a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/18qzzf2YbXDLLtIV7RgfylUnVOq9q3jNKLhfFC6KueyI/edit?usp=sharing" target="_blank">
+            <svg width="19" height="19" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.2" fill="#21A561"/><rect x="5" y="7.75" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="11.25" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="14.75" width="14" height="1.5" rx=".4" fill="#fff"/></svg>
+            4. EPM Review Sheet
+          </a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/1BgG1gnHxQYbOGFhNWBaE4DHEQWMLkKQvU1OX53hlnJE/edit?usp=sharing" target="_blank">
+            <svg width="19" height="19" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.2" fill="#21A561"/><rect x="5" y="7.75" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="11.25" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="14.75" width="14" height="1.5" rx=".4" fill="#fff"/></svg>
+            5. Task Stamp
+          </a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/1W7HuJOt6KI2V6IMMWWwti__fLei9k2J7tcVQ671WWmg/edit?usp=sharing" target="_blank">
+            <svg width="19" height="19" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.2" fill="#21A561"/><rect x="5" y="7.75" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="11.25" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="14.75" width="14" height="1.5" rx=".4" fill="#fff"/></svg>
+            6. POC During Leave US
+          </a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/1zLl7ZiPfS6nXF_XAUFzqFmSQhQM6mEDnu3arRYixdQg/edit?usp=sharing" target="_blank">
+            <svg width="19" height="19" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.2" fill="#21A561"/><rect x="5" y="7.75" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="11.25" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="14.75" width="14" height="1.5" rx=".4" fill="#fff"/></svg>
+            7. Work From Home Tracker
+          </a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/14_l1U_hAMx6pkbwkN_VBsewWvks3yTjwOxTVbbHQI_A/edit?usp=sharing" target="_blank">
+            <svg width="19" height="19" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.2" fill="#21A561"/><rect x="5" y="7.75" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="11.25" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="14.75" width="14" height="1.5" rx=".4" fill="#fff"/></svg>
+            8. US Brands PXM Template
+          </a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/1aH9NcxfhhjgLMJiJioQrJuk8NhUUEoUJABwl_kEXhS8/edit?gid=1854546926#gid=1854546926" target="_blank">
+            <svg width="19" height="19" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.2" fill="#21A561"/><rect x="5" y="7.75" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="11.25" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="14.75" width="14" height="1.5" rx=".4" fill="#fff"/></svg>
+            9. EU Brand PXM Template
+          </a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/1qWv4QZru441kPXfGX4bgMJ9n8hDahwpXGIMooRXilT0/edit?usp=sharing" target="_blank">
+            <svg width="19" height="19" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.2" fill="#21A561"/><rect x="5" y="7.75" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="11.25" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="14.75" width="14" height="1.5" rx=".4" fill="#fff"/></svg>
+            10. Image Stack Tracker US
+          </a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/1Le-lbEASnzIMGKvEfD_HofgtWTgJ3u2i5hIujNUwaO8/edit?usp=sharing" target="_blank">
+            <svg width="19" height="19" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.2" fill="#21A561"/><rect x="5" y="7.75" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="11.25" width="14" height="1.5" rx=".4" fill="#fff"/><rect x="5" y="14.75" width="14" height="1.5" rx=".4" fill="#fff"/></svg>
+            11. PXM Approved Sheet
+          </a>
         </div>
       </div>
       <div class="expand-section">
@@ -316,7 +393,7 @@ body {
           <span>Data Quality Training Videos</span>
           <span class="expand-arrow" id="dqtrainingArrow">&#9662;</span>
         </div>
-        <div class="expand-list" id="dqtrainingSection">
+        <div class="expand-list" id="dqtrainingSection" style="display:none;">
           <a class="expand-link" href="https://drive.google.com/drive/folders/184h7SdX_yOjys5bFFQHtGC-FFSRJwStg" target="_blank">DQ Training Video Folder</a>
         </div>
       </div>
@@ -325,7 +402,7 @@ body {
           <span>Automation Training Videos</span>
           <span class="expand-arrow" id="trainingArrow">&#9662;</span>
         </div>
-        <div class="expand-list" id="trainingSection">
+        <div class="expand-list" id="trainingSection" style="display:none;">
           <a class="expand-link" href="https://drive.google.com/file/d/1HnKvF05xzdnigUUVnJ_aLT8BrxGUvm5D/view?usp=drive_link" target="_blank">1. Image Stack Automation</a>
           <a class="expand-link" href="https://drive.google.com/file/d/1vWswpGNxALWzFnfatBHVmjg7t5F-Cp3q/view?usp=drive_link" target="_blank">2. Image Quality Check Automation</a>
           <a class="expand-link" href="https://drive.google.com/file/d/1au1CqQHMcF19ba88hyTGzrnlYoEcLH6b/view?usp=drive_link" target="_blank">3. PXM Automation</a>
@@ -339,6 +416,9 @@ body {
     <div class="center-content">
       <span class="codes-title">DQ Automation Codes</span>
       <input type="text" class="searchinput" placeholder="Search code/tool..." id="searchCodes" onkeyup="filterCodes2Col()">
+      <div class="pattern-chat-center">
+        <a class="pattern-chat-link" href="https://chat.pattern.com/c/4badb54e-c8f2-4fe7-9931-3f9fd87fe6e9" target="_blank">💬 Pattern Chat &rarr;</a>
+      </div>
       <div class="codes-2col-grid">
         <ul class="codes-ulist" id="codesUListLeft">
           <li class="codes-li"><a href="https://colab.research.google.com/drive/1zaKq8gZo1gG26yOj0s0N7u3zNtdtkbcA?usp=sharing" class="codes-link" target="_blank">SEO Colour</a></li>
@@ -354,6 +434,7 @@ body {
           <li class="codes-li"><a href="https://colab.research.google.com/drive/1xwK-aCgkqWk61BfglR0YNL3yF5zIyE0t?usp=sharing" class="codes-link" target="_blank">Shelf Create Master ID</a></li>
           <li class="codes-li"><a href="https://colab.research.google.com/drive/1xQlMaVQBwdQBuhfbtGb1rdakIhm8VxKR?usp=sharing" class="codes-link" target="_blank">PC/Shelf Update</a></li>
           <li class="codes-li"><a href="https://colab.research.google.com/drive/1xchnDp1zPyfR9hK4jwnGKYqFIk6nbGr1?usp=sharing" class="codes-link" target="_blank">PC DNO Automation</a></li>
+          <li class="codes-li"><a href="https://colab.research.google.com/drive/1kCouHjLN26Fuhb1v_JzGvqdZI7wGUf9w#scrollTo=c0W5FcQbvuX7" class="codes-link" target="_blank">Walmart Price & Variation QC</a></li>
         </ul>
       </div>
     </div>
@@ -363,12 +444,21 @@ body {
           <span>Platform Links</span>
           <span class="expand-arrow" id="platformArrow">&#9662;</span>
         </div>
-        <div class="expand-list" id="platformSection">
-          <a class="expand-link" href="https://pattern.amplifi.io/" target="_blank">PXM</a>
-          <a class="expand-link" href="https://www.useshelf.com/receiving/purchase-orders" target="_blank">PC/ Shelf</a>
-          <a class="expand-link" href="https://predict.pattern.com/insights/at-a-glance/sales-overview" target="_blank">Predict</a>
-          <a class="expand-link" href="https://smartq.pureforyou.com/collections/all?sort=asc" target="_blank">Shopify DP</a>
-          <a class="expand-link" href="https://chat.pattern.com/c/4badb54e-c8f2-4fe7-9931-3f9fd87fe6e9" target="_blank">Pattern Chat</a>
+        <div class="expand-list open" id="platformSection">
+          <a class="expand-link internal-link" href="https://pattern.amplifi.io/" target="_blank">
+            <svg width="19" height="19" fill="none" viewBox="0 0 24 24"><rect width="24" height="24" rx="7" fill="#193a83"/>
+            <path d="M10 8.5v-1A2.5 2.5 0 0 1 12.5 5h5A2.5 2.5 0 0 1 20 7.5v5A2.5 2.5 0 0 1 17.5 15h-1m-3 0v1A2.5 2.5 0 0 1 11.5 20h-5A2.5 2.5 0 0 1 4 17.5v-5A2.5 2.5 0 0 1 6.5 10h1" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>
+            PXM
+          </a>
+          <a class="expand-link internal-link" href="https://www.useshelf.com/receiving/purchase-orders" target="_blank">
+            <svg width="19" height="19" fill="none" viewBox="0 0 24 24"><rect width="24" height="24" rx="7" fill="#193a83"/>
+            <path d="M8.3 10.47c.14-2.12 1.81-3.41 4.08-3.4h3.77m-5.83 5.03c.18 1.87 1.38 2.87 3.62 2.86h3.21" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>
+            PC/ Shelf
+          </a>
+          <a class="expand-link internal-link" href="https://predict.pattern.com/insights/at-a-glance/sales-overview" target="_blank">
+            <svg width="19" height="19" fill="none" viewBox="0 0 24 24"><rect width="24" height="24" rx="7" fill="#193a83"/><path d="M6 14l2.29-2.29c.39-.39 1.01-.39 1.39 0L12 14.01l5.29-5.3a.9959.9959 0 0 1 1.42 0L20 11" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/></svg>
+            Predict
+          </a>
         </div>
       </div>
       <div class="expand-section">
@@ -376,12 +466,27 @@ body {
           <span>Seller Center Links</span>
           <span class="expand-arrow" id="sellerArrow">&#9662;</span>
         </div>
-        <div class="expand-list" id="sellerSection">
-          <a class="expand-link" href="https://sellercentral.amazon.com/" target="_blank">Amazon Seller Central</a>
-          <a class="expand-link" href="https://login.account.wal-mart.com/authorize" target="_blank">Walmart Seller Center</a>
-          <a class="expand-link" href="https://logonservices.oauth.iam.partnersonline.com/v1/login" target="_blank">Target Seller Center</a>
-          <a class="expand-link" href="#" target="_blank">Macy’s</a>
-          <a class="expand-link" href="#" target="_blank">Ebay</a>
+        <div class="expand-list open" id="sellerSection">
+          <a class="expand-link platform-amazon" href="https://sellercentral.amazon.com/" target="_blank">
+            <svg width="20" height="19" viewBox="0 0 74 74"><g><ellipse rx="36.5" ry="36.5" cx="37" cy="37" fill="#fff" /><text x="7" y="52" font-size="42" font-weight="bold" fill="#ff9900" font-family="Arial,Helvetica,sans-serif">a</text><circle cx="46" cy="55" r="7" fill="#ff9900"/><text x="42" y="60" font-size="18" font-weight="bold" fill="#fff">z</text></g></svg>
+            Amazon Seller Central
+          </a>
+          <a class="expand-link platform-walmart" href="https://login.account.wal-mart.com/authorize" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="#fff"/><g><circle cx="20" cy="20" r="13" fill="#004e96"/><g stroke="#ffd200" stroke-width="2.5" stroke-linecap="round"><line x1="20" y1="6.2" x2="20" y2="12.3"/><line x1="20" y1="27.7" x2="20" y2="33.8"/><line x1="6.2" y1="20" x2="12.3" y2="20"/><line x1="27.7" y1="20" x2="33.8" y2="20"/><line x1="9.51" y1="9.53" x2="13.99" y2="13.99"/><line x1="26.01" y1="26.01" x2="30.49" y2="30.47"/><line x1="30.49" y1="9.53" x2="26.01" y2="13.99"/><line x1="13.99" y1="26.01" x2="9.51" y2="30.47"/></g></g></svg>
+            Walmart Seller Center
+          </a>
+          <a class="expand-link platform-target" href="https://logonservices.oauth.iam.partnersonline.com/v1/login" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#fff"/><circle cx="20" cy="20" r="13" fill="#cc071e"/><circle cx="20" cy="20" r="8.5" fill="#fff"/><circle cx="20" cy="20" r="4" fill="#cc071e"/></svg>
+            Target Seller Center
+          </a>
+          <a class="expand-link platform-macys" href="#" target="_blank">
+            <svg width="19" height="19" viewBox="0 0 24 24"><polygon points="12,2 15,9.5 23,9.5 16.5,14.5 19.5,22 12,17.5 4.5,22 7.5,14.5 1,9.5 9,9.5" fill="#cb333b" stroke="#a12a38" stroke-width="1"/></svg>
+            Macy’s
+          </a>
+          <a class="expand-link platform-ebay" href="#" target="_blank">
+            <svg width="32" height="18" viewBox="0 0 48 18"><text y="15" font-size="15" font-family="Arial, Helvetica, sans-serif" fill="#0064D2">ebay</text></svg>
+            eBay
+          </a>
         </div>
       </div>
     </div>
@@ -397,6 +502,18 @@ function toggleSection(id, arrowId){
     el.classList.add("open"); arr.style.transform="rotate(180deg)";
   }
 }
+document.addEventListener("DOMContentLoaded",function(){
+  toggleSection('sheetSection','sheetArrow');
+  // Ensure videos section are closed:
+  document.getElementById('dqtrainingSection').style.display = 'none';
+  document.getElementById('dqtrainingArrow').style.transform = "rotate(0deg)";
+  document.getElementById('trainingSection').style.display = 'none';
+  document.getElementById('trainingArrow').style.transform = "rotate(0deg)";
+  document.getElementById('platformSection').classList.add('open');
+  document.getElementById('sellerSection').classList.add('open');
+});
+
+// Codes search
 function filterCodes2Col(){
   var input = document.getElementById("searchCodes");
   var filter = input.value.toUpperCase();
@@ -419,6 +536,8 @@ function filterCodes2Col(){
   filterList("codesUListLeft");
   filterList("codesUListRight");
 }
+
+// Global search (top right)
 const globalSearchEl = document.getElementById('globalSearchInput');
 const suggestEl = document.getElementById('globalSearchSuggest');
 function getAllSearchableLinks() {
@@ -437,7 +556,6 @@ function getAllSearchableLinks() {
   return items;
 }
 let allPageItems = getAllSearchableLinks();
-
 globalSearchEl.addEventListener('input', function() {
   let value = globalSearchEl.value.trim().toLowerCase();
   suggestEl.innerHTML = '';
@@ -479,13 +597,6 @@ globalSearchEl.addEventListener('keydown',function(e){
     openSuggest.click();
     e.preventDefault();
   }
-});
-document.addEventListener("DOMContentLoaded",function(){
-  toggleSection('dqtrainingSection','dqtrainingArrow')
-  toggleSection('trainingSection','trainingArrow')
-  toggleSection('sheetSection','sheetArrow')
-  toggleSection('platformSection','platformArrow')
-  toggleSection('sellerSection','sellerArrow')
 });
 </script>
 </body>
