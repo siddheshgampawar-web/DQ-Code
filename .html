@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pattern Automation Portal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+:root {
+  --blue1: #e3f0fc;
+  --blue2: #3566a8;
+  --blue3: #ddeaff;
+  --white: #fcfcfc;
+  --shadow: 0 2px 14px rgba(33,60,138,0.07);
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #1a237e;
+  background: linear-gradient(150deg, var(--blue1) 60%, var(--blue2) 100%);
+  min-height: 100vh;
+}
+body {background-color: white;}
+.header-bar {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 43px 0 14px 0;
+  z-index: 2;
+}
+.header-left {
+  min-width: 175px;
+  display:flex; align-items: flex-start; padding-left: 34px;
+}
+.name {
+  font-size: 1.15rem;
+  color: #325088;
+  font-weight: 500;
+  letter-spacing: .5px;
+  background: #e0ebfc;
+  border-radius: 7px;
+  padding: 3px 19px 5px 13px;
+  user-select: none;
+  box-shadow: 0 1px 8px rgba(50,80,120,.05);
+}
+.header-center {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position:absolute;
+  left: 0; right: 0; top: 9px;
+  margin-left: auto; margin-right: auto;
+  pointer-events: none;
+  z-index:1;
+}
+.dqteam, .pattern-title {
+  font-size: 2.1rem;
+  font-family: inherit;
+  font-weight: bold;
+  color: #235bb7;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #b2cdfc 70%, #f2f6fa 100%);
+  border-radius: 12px;
+  text-align: center;
+  padding: 6px 34px 7px 34px;
+  margin-bottom: 3px;
+  box-shadow: 0 1px 7px rgba(100,127,180,.10);
+  user-select: none;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  pointer-events:auto;
+}
+.pattern-title {
+  color: #2b59a5;
+  margin-top: 0;
+  margin-bottom: 4px;
+}
+.header-right {
+  min-width: 242px;
+  padding-right: 34px;
+  display:flex; flex-direction: row; align-items: flex-start;
+  z-index:3;
+}
+/* Search Bar */
+.global-search-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(33,60,138,0.12);
+  padding: 3px 12px 3px 5px;
+  min-width: 216px;
+  max-width: 308px;
+  width: 100%;
+}
+.global-search-icon {
+  font-size: 1.18rem;
+  color: #3566a8;
+  margin-right: 7px;
+}
+.global-search-input {
+  font-size: 1.08rem;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #274176;
+  width: 100%;
+  padding: 5px 0;
+  min-width: 120px;
+  max-width:230px;
+}
+.global-search-suggest {
+  position: absolute;
+  top: 35px;
+  right: 0;
+  left: 0;
+  width: 98%;
+  background: #f5faff;
+  border: 1px solid #b6cffa;
+  border-radius: 7px;
+  box-shadow: 0 2px 8px rgba(33,60,138,.09);
+  z-index: 9999;
+  max-height: 180px;
+  overflow-y: auto;
+  display: none;
+  padding: 2px 0;
+}
+.global-search-suggest.open {display: block;}
+.global-search-suggest-item {
+  padding: 8px 18px;
+  cursor: pointer;
+  color: #125ad3;
+  font-size: 1.01rem;
+  border-bottom: 1px solid #e3f0fc;
+}
+.global-search-suggest-item:last-child {border-bottom:none;}
+.global-search-suggest-item:hover {
+  background: #dae8f8; color:#2a277a;
+}
+/* MAIN PAGE CONTENT */
+.container-main {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  min-height: 750px; width: 100%; box-sizing: border-box; gap: 17px;
+}
+.sidebar, .sidebar-right {
+  width: 315px; min-width: 215px; max-width:340px;
+  background: var(--white); box-shadow: var(--shadow);
+  border-radius: 14px; margin-top: 4px; margin-bottom: 18px;
+  padding: 12px 13px 19px 24px; display: flex; flex-direction: column; align-items:flex-start; gap: 25px 0;
+}
+.sidebar {margin-left: 26px;}
+.sidebar-right {margin-right: 26px;}
+.section-title {
+  font-weight: 700; color: #274176; font-size: 1.12rem;
+  margin-bottom: 7px; margin-top: 8px; letter-spacing:0.5px; user-select:none;
+  display: flex; align-items:center; gap: 7px;
+}
+.expand-arrow {
+  cursor:pointer; user-select:none; margin-left:3px; font-size:1.11em;
+  transition: transform .2s;
+}
+.expand-section {margin-bottom: 7px; width:100%;}
+.expand-list {
+  display: none; padding-left: 0; flex-direction: column;
+  gap: 4.5px; margin: 3px 0 0 7px;
+}
+.expand-list.open { display: flex; }
+.expand-link, .expand-link:visited {
+  display: block; text-decoration: none; color: #1565c0; background: var(--blue3);
+  padding: 9px 18px; border-radius: 8px;
+  margin-bottom: 1px; font-size: 1.05rem; transition: background 0.20s, color .12s;
+  cursor: pointer; width:93%;
+}
+.expand-link:hover {background: #bbdefb; color: #0f234c;}
+.center-content {
+  flex-grow:1; margin: 25px 12px 10px 12px; display: flex; flex-direction: column;
+  align-items: center; min-width: 330px; max-width: 1250px;
+}
+.codes-title {
+  font-weight:700; font-size:1.16rem; color: #1c336b; margin-bottom: 10px; margin-top:10px; user-select:none;
+}
+.searchinput {
+  font-size: 1.07rem; border: 1.7px solid #d3e3fa; border-radius: 7px;
+  padding: 6px 14px; outline: 0; margin-bottom: 18px; min-width: 230px;
+  background: var(--blue3); color: #14204a;
+  box-shadow: 0 1px 8px rgba(50,80,120,.06);
+  transition: border 0.18s;
+  max-width: 340px;
+}
+.searchinput:focus { border: 1.7px solid #306aad;}
+.codes-2col-grid {
+  display:flex; justify-content:center; align-items:flex-start; gap: 50px; width:100%;
+  max-width:920px; margin-top:8px;
+}
+.codes-ulist {
+  width:100%; padding-left: 0; margin: 0; list-style: none;
+  display: flex; flex-direction: column; gap: 6px; max-width:400px; min-width:200px;
+}
+.codes-li {
+  padding:0; margin:0; width: 99%; display: block;
+}
+.codes-link, .codes-link:visited {
+  display: block;
+  width: 100%;
+  background: var(--blue3);
+  color: #1367be;
+  font-size: 1.04rem;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 14px 16px 13px 25px;
+  margin-bottom: 1px;
+  transition: background 0.19s, color .11s;
+  text-decoration:none; border: none; cursor: pointer; text-align:left;
+}
+.codes-link:hover, .codes-link:focus {
+  background: #bbdefb;
+  color: #0e1d3c;
+  outline: none;
+}
+@media (max-width: 1100px) {
+  .codes-2col-grid {gap:18px;}
+  .codes-ulist {max-width:95vw;}
+  .center-content {max-width:96vw;}
+  .sidebar, .sidebar-right {width:196px;max-width:220px;min-width:120px;}
+  .header-left {padding-left: 10px;}
+  .header-right {padding-right: 10px;}
+}
+@media (max-width: 700px) {
+  .container-main {height:auto; flex-direction:column;}
+  .sidebar, .sidebar-right {display:none;}
+  .center-content {margin:12px 2vw;}
+  .codes-link {font-size:0.97rem;padding:9px 6px;}
+  .codes-title {margin-top:9px;}
+  .codes-2col-grid {flex-direction:column; gap:8px;}
+  .global-search-suggest {width: 95vw; left: 0;}
+  .header-bar {padding:20px 0 10px 0;}
+  .header-left {padding-left: 7vw;}
+  .header-right {padding-right: 7vw;}
+  .dqteam, .pattern-title {padding: 4px 12vw;}
+  .header-center {top: 0;}
+}
+</style>
+</head>
+<body>
+<!-- HEADER BAR -->
+<div class="header-bar">
+  <div class="header-left">
+    <div class="name">Siddhesh Gampawar</div>
+  </div>
+  <div class="header-center">
+    <div class="dqteam">DATA QUALITY TEAM</div>
+    <div class="pattern-title">PATTERN</div>
+  </div>
+  <div class="header-right">
+    <div class="global-search-container">
+      <span class="global-search-icon">&#128269;</span>
+      <input id="globalSearchInput" class="global-search-input" type="text" placeholder="Search anything on this page...">
+      <div id="globalSearchSuggest" class="global-search-suggest"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container-main">
+  <!-- LEFT SIDEBAR -->
+  <div class="sidebar">
+    <!-- Moved Daily Workflow Google Sheets to the Top -->
+    <div class="expand-section">
+      <div class="section-title" onclick="toggleSection('sheetSection', 'sheetArrow')">
+        <span>Daily Workflow Google Sheets</span>
+        <span class="expand-arrow" id="sheetArrow">&#9662;</span>
+      </div>
+      <div class="expand-list" id="sheetSection">
+        <a class="expand-link" href="https://docs.google.com/spreadsheets/d/1BgG1gnHxQYbOGFhNWBaE4DHEQWMLkKQvU1OX53hlnJE/edit?usp=sharing" target="_blank">1. Task Stamp</a>
+        <a class="expand-link" href="https://docs.google.com/spreadsheets/d/1W7HuJOt6KI2V6IMMWWwti__fLei9k2J7tcVQ671WWmg/edit?usp=sharing" target="_blank">2. POC During Leave US</a>
+        <a class="expand-link" href="https://docs.google.com/spreadsheets/d/1zLl7ZiPfS6nXF_XAUFzqFmSQhQM6mEDnu3arRYixdQg/edit?usp=sharing" target="_blank">3. Work From Home Tracker</a>
+        <a class="expand-link" href="https://docs.google.com/spreadsheets/d/14_l1U_hAMx6pkbwkN_VBsewWvks3yTjwOxTVbbHQI_A/edit?usp=sharing" target="_blank">4. US Brands PXM Template</a>
+        <a class="expand-link" href="https://docs.google.com/spreadsheets/d/1aH9NcxfhhjgLMJiJioQrJuk8NhUUEoUJABwl_kEXhS8/edit?gid=1854546926#gid=1854546926" target="_blank">5. EU Brand PXM Template</a>
+        <a class="expand-link" href="https://docs.google.com/spreadsheets/d/1qWv4QZru441kPXfGX4bgMJ9n8hDahwpXGIMooRXilT0/edit?usp=sharing" target="_blank">6. Image Stack Tracker US</a>
+        <a class="expand-link" href="https://docs.google.com/spreadsheets/d/1Le-lbEASnzIMGKvEfD_HofgtWTgJ3u2i5hIujNUwaO8/edit?usp=sharing" target="_blank">7. PXM Approved Sheet</a>
+      </div>
+    </div>
+    <div class="expand-section">
+      <div class="section-title" onclick="toggleSection('dqtrainingSection', 'dqtrainingArrow')">
+        <span>Data Quality Training Videos</span>
+        <span class="expand-arrow" id="dqtrainingArrow">&#9662;</span>
+      </div>
+      <div class="expand-list" id="dqtrainingSection">
+        <a class="expand-link" href="https://drive.google.com/drive/folders/184h7SdX_yOjys5bFFQHtGC-FFSRJwStg" target="_blank">DQ Training Video Folder</a>
+      </div>
+    </div>
+    <div class="expand-section">
+      <div class="section-title" onclick="toggleSection('trainingSection', 'trainingArrow')">
+        <span>Automation Training Videos</span>
+        <span class="expand-arrow" id="trainingArrow">&#9662;</span>
+      </div>
+      <div class="expand-list" id="trainingSection">
+        <a class="expand-link" href="https://drive.google.com/file/d/1HnKvF05xzdnigUUVnJ_aLT8BrxGUvm5D/view?usp=drive_link" target="_blank">1. Image Stack Automation</a>
+        <a class="expand-link" href="https://drive.google.com/file/d/1vWswpGNxALWzFnfatBHVmjg7t5F-Cp3q/view?usp=drive_link" target="_blank">2. Image Quality Check Automation</a>
+        <a class="expand-link" href="https://drive.google.com/file/d/1au1CqQHMcF19ba88hyTGzrnlYoEcLH6b/view?usp=drive_link" target="_blank">3. PXM Automation</a>
+        <a class="expand-link" href="https://drive.google.com/file/d/1j17eCQGp5VF8LuBciZu2VBQwklgWuI_X/view?usp=drive_link" target="_blank">4. PC/ MF Analysis Automation</a>
+        <a class="expand-link" href="https://drive.google.com/drive/u/0/folders/1tVxzHhm04nNwQZm1_yjj3SCO9XoPy6Pk" target="_blank">5. Other Training Video</a>
+        <a class="expand-link" href="https://drive.google.com/file/d/1qhE15MtW9NHHpc1vvg0QOdUhpLJPA9lO/view?usp=drive_link" target="_blank">6. Category Updating Predict</a>
+        <a class="expand-link" href="https://drive.google.com/file/d/1DhEraDLYmBTP6UjFIngPMarEziIo_Rjb/view?usp=drive_link" target="_blank">7. PC DNO Automation</a>
+      </div>
+    </div>
+  </div>
+  <!-- CENTER CONTENT: DQ AUTOMATION CODES split in two lists-->
+  <div class="center-content">
+    <span class="codes-title">DQ Automation Codes</span>
+    <input type="text" class="searchinput" placeholder="Search code/tool..." id="searchCodes" onkeyup="filterCodes2Col()">
+    <div class="codes-2col-grid">
+      <ul class="codes-ulist" id="codesUListLeft">
+        <li class="codes-li"><a href="https://colab.research.google.com/drive/1zaKq8gZo1gG26yOj0s0N7u3zNtdtkbcA?usp=sharing" class="codes-link" target="_blank">SEO Colour</a></li>
+        <li class="codes-li"><a href="https://colab.research.google.com/drive/1XVFrQ_ADmsIOOEW4sg8KEmEQVmOmmmVD?usp=sharing" class="codes-link" target="_blank">PXM</a></li>
+        <li class="codes-li"><a href="https://colab.research.google.com/drive/145QPjai0SDD7FdkzG13BBwOsziYSI4uF" class="codes-link" target="_blank">Image Stack</a></li>
+        <li class="codes-li"><a href="https://colab.research.google.com/drive/1oca5Dpk4W5ztFVzAWbail7zuXly0q6bb?usp=sharing" class="codes-link" target="_blank">Walmart DP SEO Scrap</a></li>
+        <li class="codes-li"><a href="https://colab.research.google.com/drive/18DsMuf0eJJNFwvEZdp1TONlAFzswIcDF?usp=sharing" class="codes-link" target="_blank">Category Updating Predict</a></li>
+        <li class="codes-li"><a href="https://colab.research.google.com/drive/1u14HFeArgEp8ljjk2WT66-sM51i-q9vM?usp=sharing" class="codes-link" target="_blank">PC- Listing Update EU</a></li>
+      </ul>
+      <ul class="codes-ulist" id="codesUListRight">
+        <li class="codes-li"><a href="https://colab.research.google.com/drive/1jX7K-IGFdC5r8F2Pn4dqAc-Xrz_rnekA?usp=sharing" class="codes-link" target="_blank">Image QC</a></li>
+        <li class="codes-li"><a href="https://create-clr-947577624254.us-west1.run.app/" class="codes-link" target="_blank">CLR</a></li>
+        <li class="codes-li"><a href="https://colab.research.google.com/drive/1xwK-aCgkqWk61BfglR0YNL3yF5zIyE0t?usp=sharing" class="codes-link" target="_blank">Shelf Create Master ID</a></li>
+        <li class="codes-li"><a href="https://colab.research.google.com/drive/1xQlMaVQBwdQBuhfbtGb1rdakIhm8VxKR?usp=sharing" class="codes-link" target="_blank">PC/Shelf Update</a></li>
+        <li class="codes-li"><a href="https://colab.research.google.com/drive/1xchnDp1zPyfR9hK4jwnGKYqFIk6nbGr1?usp=sharing" class="codes-link" target="_blank">PC DNO Automation</a></li>
+        <li class="codes-li"><a href="https://colab.research.google.com/drive/1kCouHjLN26Fuhb1v_JzGvqdZI7wGUf9w#scrollTo=c0W5FcQbvuX7" class="codes-link" target="_blank">Walmart Price & Variation QC</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- RIGHT SIDEBAR (PLATFORM/SELLER CENTER) -->
+  <div class="sidebar-right">
+    <div class="expand-section">
+      <div class="section-title" onclick="toggleSection('platformSection','platformArrow')">
+        <span>Platform Links</span>
+        <span class="expand-arrow" id="platformArrow">&#9662;</span>
+      </div>
+      <div class="expand-list" id="platformSection">
+        <a class="expand-link" href="https://pattern.amplifi.io/" target="_blank">PXM</a>
+        <a class="expand-link" href="https://www.useshelf.com/receiving/purchase-orders" target="_blank">PC/ Shelf</a>
+        <a class="expand-link" href="https://predict.pattern.com/insights/at-a-glance/sales-overview" target="_blank">Predict</a>
+        <a class="expand-link" href="https://smartq.pureforyou.com/collections/all?sort=asc" target="_blank">Shopify DP</a>
+        <a class="expand-link" href="https://chat.pattern.com/c/4badb54e-c8f2-4fe7-9931-3f9fd87fe6e9" target="_blank">Pattern Chat</a>
+      </div>
+    </div>
+    <div class="expand-section">
+      <div class="section-title" onclick="toggleSection('sellerSection','sellerArrow')">
+        <span>Seller Center Links</span>
+        <span class="expand-arrow" id="sellerArrow">&#9662;</span>
+      </div>
+      <div class="expand-list" id="sellerSection">
+        <a class="expand-link" href="https://sellercentral.amazon.com/" target="_blank">Amazon Seller Central</a>
+        <a class="expand-link" href="https://login.account.wal-mart.com/authorize" target="_blank">Walmart Seller Center</a>
+        <a class="expand-link" href="https://logonservices.oauth.iam.partnersonline.com/v1/login" target="_blank">Target Seller Center</a>
+        <a class="expand-link" href="" target="_blank">Macy’s</a>
+        <a class="expand-link" href="" target="_blank">Ebay</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+function toggleSection(id, arrowId){
+  var el = document.getElementById(id);
+  var arr = document.getElementById(arrowId);
+  if(el.classList.contains("open")){
+    el.classList.remove("open"); arr.style.transform="rotate(0)";
+  } else {
+    el.classList.add("open"); arr.style.transform="rotate(180deg)";
+  }
+}
+function filterCodes2Col(){
+  var input = document.getElementById("searchCodes");
+  var filter = input.value.toUpperCase();
+  function filterList(ulId){
+    var ul = document.getElementById(ulId);
+    var lis = ul.getElementsByClassName("codes-li");
+    var visibleCount = 0;
+    for (var i = 0; i < lis.length; i++) {
+      var a = lis[i].getElementsByTagName("a")[0];
+      var textValue = a.textContent || a.innerText;
+      if (textValue.toUpperCase().indexOf(filter) > -1) {
+        lis[i].style.display = "";
+        visibleCount++;
+      } else {
+        lis[i].style.display = "none";
+      }
+    }
+    ul.style.display = visibleCount>0 ? "" : "none";
+  }
+  filterList("codesUListLeft");
+  filterList("codesUListRight");
+}
+const globalSearchEl = document.getElementById('globalSearchInput');
+const suggestEl = document.getElementById('globalSearchSuggest');
+function getAllSearchableLinks() {
+  let links = Array.from(document.querySelectorAll('a, .codes-title, .dqteam, .pattern-title, .name, .section-title'));
+  let items = [];
+  links.forEach(el => {
+    let text = (el.textContent || el.innerText).trim();
+    if (text && text.length > 1) {
+      items.push({
+        text: text,
+        href: el.href && el.href.startsWith('http') ? el.href : null,
+        node: el
+      });
+    }
+  });
+  return items;
+}
+let allPageItems = getAllSearchableLinks();
+
+globalSearchEl.addEventListener('input', function() {
+  let value = globalSearchEl.value.trim().toLowerCase();
+  suggestEl.innerHTML = '';
+  if (!value) {
+    suggestEl.style.display = 'none';
+    return;
+  }
+  let matches = allPageItems.filter(item => item.text.toLowerCase().includes(value));
+  if (matches.length) {
+    matches.slice(0,12).forEach(m=>{
+      const div = document.createElement('div');
+      div.className = 'global-search-suggest-item';
+      div.textContent = m.text;
+      div.onclick = () => {
+        if (m.href) {
+          window.open(m.href, "_blank");
+        } else if (m.node && m.node.scrollIntoView) {
+          m.node.scrollIntoView({behavior: 'smooth', block:'center'});
+          m.node.style.background = '#ffe173';
+          setTimeout(()=> { m.node.style.background=''; }, 1200);
+        }
+        suggestEl.style.display = 'none';
+      };
+      suggestEl.appendChild(div);
+    });
+    suggestEl.style.display = 'block';
+  } else {
+    suggestEl.style.display = 'none';
+  }
+});
+document.addEventListener('click', function(e){
+  if (!globalSearchEl.contains(e.target) && !suggestEl.contains(e.target)) {
+    suggestEl.style.display='none';
+  }
+});
+globalSearchEl.addEventListener('keydown',function(e){
+  let openSuggest = suggestEl.querySelector('.global-search-suggest-item');
+  if (e.key==='Enter' && openSuggest) {
+    openSuggest.click();
+    e.preventDefault();
+  }
+});
+document.addEventListener("DOMContentLoaded",function(){
+  toggleSection('dqtrainingSection','dqtrainingArrow')
+  toggleSection('trainingSection','trainingArrow')
+  toggleSection('sheetSection','sheetArrow')
+  toggleSection('platformSection','platformArrow')
+  toggleSection('sellerSection','sellerArrow')
+});
+</script>
+</body>
+</html>

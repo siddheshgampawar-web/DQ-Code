@@ -1,0 +1,708 @@
+
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+							<style>
+								body {
+									background-color: white; /* Ensure the iframe has a white background */
+								}
+
+								
+							</style>
+                        </head>
+                        <body>
+                            <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pattern Automation Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    :root {
+      --blue1: #d0e7fa;
+      --blue2: #295188;
+      --blue3: #d0e4fa;
+      --blue4: #12519b;
+      --white: #f7f7f7;
+      --shadow: 0 2px 14px rgba(33,60,138,0.07);
+      --brand-dark-blue: #101e63;
+      --brand-hover-blue: #101e63;
+      --brand-hover-white: #fff;
+      --important-yellow: #fffbe7;
+      --important-border: #f3c133;
+    }
+    html, body {
+      margin: 0; padding: 0;
+      min-height: 100vh;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, var(--blue1) 66%, var(--blue2) 100%);
+      overflow-x: hidden !important;
+    }
+    html {
+      scrollbar-width: thin;
+      scrollbar-color: #92b8e9 #f3f5fa;
+    }
+    body::-webkit-scrollbar, html::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+      background: #f3f5fa;
+    }
+    body::-webkit-scrollbar-thumb, html::-webkit-scrollbar-thumb {
+      background: linear-gradient(120deg, #b6d1f7 40%, #e2edfb 100%);
+      border-radius: 7px;
+    }
+    body::-webkit-scrollbar-track, html::-webkit-scrollbar-track {
+      background: #f3f5fa;
+    }
+    body::-webkit-scrollbar-corner, html::-webkit-scrollbar-corner {
+      background: #f3f5fa;
+    }
+    * { box-sizing: border-box; }
+    .main-app-container {
+      margin: 0 auto;
+      min-width: 315px;
+      max-width: 1600px;
+      min-height: 100vh;
+      background: transparent;
+    }
+    .header-bar {
+      width: 100%;
+      background: transparent;
+      margin: 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      position: relative;
+      z-index: 10;
+      min-height: 110px;
+      padding-top:6px;
+    }
+    .header-left {
+      min-width: 180px;
+      padding-left: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px 0;
+    }
+    .name {
+      font-size: 1rem;
+      color: #325088;
+      font-weight: 500;
+      background: #EDF6FF;
+      border-radius: 7px;
+      padding: 8px 19px 8px 14px;
+      user-select: none;
+      box-shadow: 0 1px 8px rgba(50,80,120,.05);
+      margin-bottom:4px;
+      margin-top:4px;
+      align-self: flex-start;
+    }
+    .sop-important {
+      font-weight: bold;
+      font-size: 1.07rem;
+      border-radius: 7px;
+      padding: 8px 19px 8px 14px;
+      box-shadow: 0 2px 12px #e7cf7980;
+      background: var(--important-yellow);
+      color: #af870a;
+      border: 1.7px solid var(--important-border);
+      margin-top: 2px;
+      margin-bottom: 2px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .sop-important:hover, .sop-important:focus {
+      background: #ffe473;
+      color: #B59312;
+      border-color: #ffd700;
+      text-decoration: underline;
+    }
+    .header-right {
+      min-width: auto;
+      padding-right: 29px;
+      display: flex;
+      align-items: center;
+      height: 80px;
+    }
+    .global-search-container {
+      display: flex;
+      align-items: center;
+      background: var(--white);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(33,60,138,0.12);
+      padding: 0 12px 0 6px;
+      min-width: 190px;
+      max-width: 258px;
+      width: 100%;
+      height: 37px;
+      margin-top: 3px;
+      margin-bottom: 3px;
+      border: 1px solid #c3daff;
+    }
+    .global-search-icon {
+      font-size: 1.02rem;
+      color: #3566a8;
+      margin-right: 5px;
+    }
+    .global-search-input {
+      font-size: 1rem;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: #274176;
+      width: 100%;
+      min-width:60px;
+      max-width:190px;
+      padding: 8px 0 8px 0;
+    }
+    .global-search-suggest {
+      position: absolute;
+      top: 57px;
+      right: 0;
+      width: 258px;
+      background: #f3faff;
+      border: 1px solid #b6cffa;
+      border-radius: 7px;
+      box-shadow: 0 2px 8px rgba(33,60,138,.09);
+      max-height: 170px;
+      overflow-y: auto;
+      display: none;
+      padding: 2px 0;
+      z-index: 999;
+    }
+    .global-search-suggest.open { display: block; }
+    .global-search-suggest-item {
+      padding: 7px 18px;
+      cursor: pointer;
+      color: #125ad3;
+      font-size: .99rem;
+      border-bottom: 1px solid #e3f0fc;
+      background: #f3faff;
+      transition: background .18s, color .11s;
+    }
+    .global-search-suggest-item:last-child {border-bottom:none;}
+    .global-search-suggest-item:hover {
+      background: var(--brand-dark-blue); color: var(--brand-hover-white);
+    }
+    .header-center {
+      left: 0; right: 0; top: 0;
+      height: 80px;
+      position: absolute;
+      width: 100vw;
+      z-index:0;
+      pointer-events: none;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transform: translateX(3vw);
+    }
+    .dqteam, .pattern-title {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #235bb7;
+      letter-spacing: 2px;
+      background: linear-gradient(90deg, #b2cdfc 70%, #f2f6fa 100%);
+      border-radius: 12px;
+      text-align: center;
+      padding: 6px 32px 7px 32px;
+      margin-bottom: 2px;
+      box-shadow: 0 1px 7px rgba(100,127,180,.08);
+      user-select: none;
+      pointer-events:auto;
+    }
+    .pattern-title {
+      color: #2b59a5;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    @media (max-width: 1100px) {
+      .main-app-container {max-width: 98vw;}
+      .codes-2col-grid {gap:18px;}
+      .codes-ulist {max-width:95vw;}
+      .center-content {max-width:98vw;}
+      .sidebar, .sidebar-right {width:180px;max-width:220px;min-width:110px;}
+      .header-bar {min-height:80px;}
+      .header-left, .header-right {height: 60px;}
+      .header-center {height: 60px; transform: translateX(0);}
+      .dqteam, .pattern-title {font-size:1.2rem; padding: 2px 10vw;}
+      .sop-important {font-size:1rem;}
+    }
+    @media (max-width: 800px) {
+      .container-main {flex-direction:column;}
+      .sidebar, .sidebar-right {display:none;}
+      .center-content {margin:13px 2vw;}
+      .codes-link {font-size:0.97rem;padding:9px 6px;}
+      .codes-title {margin-top:9px;}
+      .codes-2col-grid {flex-direction:column; gap:8px;}
+      .global-search-suggest {width: 95vw; left: 0;}
+      .main-app-container {max-width:100vw;}
+      .header-center {transform: translateX(0);}
+    }
+    .container-main {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 22px;
+      width: 100%;
+      min-height: 700px;
+      background:transparent;
+      overflow-x: hidden !important;
+    }
+    .sidebar, .sidebar-right {
+      background: white;
+      box-shadow: 0 3px 32px 0 #b5d5fb12;
+      border-radius: 14px;
+      margin-top: 18px;
+      margin-bottom: 18px;
+      padding: 16px 14px 23px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items:flex-start;
+      gap: 25px 0;
+      overflow-x: hidden !important;
+    }
+    .sidebar {margin-left: 17px;}
+    .sidebar-right {margin-right: 17px;}
+    .section-title {
+      font-weight: 700; color: #235bb7; font-size: 1.16rem;
+      margin-bottom: 7px; margin-top: 8px; letter-spacing:0.5px; user-select:none;
+      display: flex; align-items:center; gap: 7px;
+      cursor: pointer;
+      transition: background .18s, color .12s;
+    }
+    .expand-arrow {
+      cursor:pointer; user-select:none; margin-left:3px; font-size:1.11em;
+      transition: transform .2s;
+    }
+    .expand-section {margin-bottom: 7px; width:100%;}
+    .expand-list {
+      display: none; padding-left: 0; flex-direction: column;
+      gap: 4.5px; margin: 3px 0 0 7px;
+      max-height: 365px;
+      overflow-y: auto;
+      padding-right: 1px;
+      scrollbar-width: thin;
+      scrollbar-color: #98b6e2 #f2f6fa;
+      overflow-x: hidden !important;
+    }
+    .expand-list.open { display: flex; }
+    .expand-list::-webkit-scrollbar {
+      width: 8px;
+      background: #f2f6fa;
+    }
+    .expand-list::-webkit-scrollbar-thumb {
+      background: linear-gradient(120deg, #98b6e2 40%, #e2edfb 100%);
+      border-radius: 6px;
+    }
+    .expand-list::-webkit-scrollbar-track {
+      background: #f2f6fa;
+      border-radius: 8px;
+    }
+    .expand-list::-webkit-scrollbar-corner {
+      background: transparent;
+    }
+    .expand-link, .expand-link:visited {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      background: linear-gradient(90deg, #b2cdfc 70%, #f2f6fa 100%) !important;
+      color: #21355E !important;
+      padding: 11px 18px;
+      border-radius: 8px;
+      margin-bottom: 7px;
+      font-size: 1.07rem;
+      font-weight: 470;
+      cursor: pointer;
+      width:94%;
+      gap:8px;
+      border: none;
+      box-shadow: 0 1.5px 7px #b4c9fe28;
+      transition: background 0.21s, color .12s, box-shadow .18s;
+    }
+    .expand-link.sheet-link svg {min-width: 19px;min-height: 19px; margin-right: 6px;}
+    .expand-link.internal-link svg {min-width: 19px;min-height: 19px;margin-right: 6px;}
+    .expand-link.platform-amazon svg, .expand-link.platform-walmart svg,
+    .expand-link.platform-target svg {min-width:20px;min-height:20px;margin-right:7px;}
+    .expand-link.platform-ebay {color: #fff;}
+    .expand-link.platform-ebay svg {margin-right:7px;}
+    .expand-link.platform-macys svg {margin-right:7px;}
+    .expand-link:hover, .expand-link:focus {
+      background: var(--brand-hover-blue) !important;
+      color: var(--brand-hover-white) !important;
+      outline: none;
+      box-shadow:0 5px 16px #3264a866;
+      text-decoration: none;
+    }
+    .section-title:hover, .section-title:focus {
+      background: var(--brand-hover-blue);
+      color: var(--brand-hover-white);
+      border-radius: 8px;
+    }
+    .center-content {
+      flex-grow:1; margin: 25px 12px 18px 12px; display: flex; flex-direction: column;
+      align-items: center; min-width: 330px; max-width: 1000px;
+      overflow-x: hidden !important;
+    }
+    .codes-title {
+      font-weight:700; font-size:1.14rem; color: #1c336b; margin-bottom: 10px; margin-top:10px; user-select:none;
+    }
+    .dqchat-bar {
+      display: flex;
+      align-items: center;
+      background: #1c336b;
+      border-radius: 10px;
+      box-shadow: 0 1.5px 8px #adc7eb35;
+      padding: 12px 20px;
+      color: #fff;
+      font-weight: 570;
+      font-size: 1.04rem;
+      margin-bottom: 14px;
+      transition: background .18s, color .11s, box-shadow .15s;
+      gap: 8px;
+      outline: none;
+      border: none;
+      text-decoration: none;
+      width: auto;
+      user-select: none;
+      cursor: pointer;
+    }
+    .dqchat-bar:hover,
+    .dqchat-bar:focus {
+      background: #101e63;
+      color: #fff !important;
+      text-decoration: underline;
+      box-shadow: 0 5px 13px #2e5b8747;
+    }
+    .dqchat-bar svg {
+      vertical-align: middle;
+      margin-right: 7px;
+      min-width: 21px;
+      min-height: 21px;
+    }
+    .pattern-chat-center {
+      margin-bottom: 18px;
+      margin-top: -2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    .pattern-chat-link {
+      display: inline-block;
+      font-size: 1.10rem;
+      font-weight: 570;
+      color: #fff;
+      background: linear-gradient(96deg, #114077 75%, #2b94db 100%);
+      padding: 13px 27px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.21s, color .11s, box-shadow .16s;
+      box-shadow: 0 1.5px 8px #adc7eb35;
+      border: none;
+      margin-top: 3px;
+    }
+    .pattern-chat-link:hover,
+    .pattern-chat-link:focus {
+      background: linear-gradient(93deg, #3179e9 75%, #2bdbd4 100%);
+      color: #fff !important;
+      text-decoration: underline;
+      box-shadow: 0 5px 13px #2e5b8747;
+      border: none;
+    }
+    .codes-2col-grid {
+      display:flex; justify-content:center; align-items:flex-start; gap: 40px; width:100%;
+      max-width:900px; margin-top:8px;
+      overflow-x: hidden !important;
+    }
+    .codes-ulist {
+      width:100%; padding-left: 0; margin: 0; list-style: none;
+      display: flex; flex-direction: column; gap: 6px; max-width:400px; min-width:200px;
+      overflow-x: hidden !important;
+    }
+    .codes-li {
+      padding:0; margin:0; width: 99%; display: block; position: relative;
+    }
+    .codes-link, .codes-link:visited {
+      display: block;
+      width: 100%;
+      background: linear-gradient(90deg, #b2cdfc 70%, #f2f6fa 100%) !important;
+      color: #21355E !important;
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: 8px;
+      padding: 13px 14px 13px 22px;
+      margin-bottom: 8px;
+      border: none;
+      transition: background 0.20s, color .11s, box-shadow .14s;
+      text-decoration:none; cursor: pointer; text-align:left;
+      box-shadow:0 1.5px 7px #b4c9fe26;
+    }
+    .codes-link:hover, .codes-link:focus {
+      background: var(--brand-hover-blue) !important;
+      color: var(--brand-hover-white) !important;
+      outline: none;
+    }
+    /* CLR Image Amazon tooltip styling */
+    .clr-tooltip {
+      display: none;
+      position: absolute;
+      bottom: 100%;
+      right: 0px;
+      background: #fff;
+      color: #21355e;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px #b4c9fe28;
+      font-size: 0.96rem;
+      font-weight: 530;
+      padding: 8px 14px;
+      margin-bottom: 6px;
+      z-index: 99;
+      border: 1.2px solid #6ea5f5;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    .clr-amazon-li:hover .clr-tooltip, .clr-amazon-li:focus-within .clr-tooltip {
+      display: block;
+      animation: fadePop .18s;
+    }
+    @keyframes fadePop {
+      0% { opacity:0; transform: translateY(10px) scale(0.96);}
+      100%{ opacity:1;}
+    }
+    </style>
+</head>
+<body>
+<div style="height:20px;"></div>
+<div class="main-app-container">
+  <div class="header-bar">
+    <div class="header-left">
+      <div class="name">Siddhesh Gampawar</div>
+      <a class="sop-important" href="https://drive.google.com/file/d/13n_eoQG_cXKainx24UDwz6ktAC-ePMOT/view?usp=sharing" target="_blank">
+        <svg width="21" height="21" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#e4bf4c" stroke-width="2"/><path d="M10 5V11" stroke="#e4bf4c" stroke-width="2" stroke-linecap="round"/><circle cx="10" cy="14.2" r="1.2" fill="#e4bf4c"/></svg>
+        Data Quality SOP Guide
+      </a>
+    </div>
+    <div class="header-center">
+      <div class="dqteam">DATA QUALITY TEAM</div>
+      <div class="pattern-title">PATTERN</div>
+    </div>
+    <div class="header-right">
+      <div class="global-search-container">
+        <span class="global-search-icon">&#128269;</span>
+        <input id="globalSearchInput" class="global-search-input" type="text" placeholder="Search on this page...">
+        <div id="globalSearchSuggest" class="global-search-suggest"></div>
+      </div>
+    </div>
+  </div>
+  <div class="container-main">
+    <div class="sidebar">
+      <div class="expand-section">
+        <div class="section-title" onclick="toggleSection('sheetSection', 'sheetArrow')">
+          <span>Daily Workflow Google Sheets</span>
+          <span class="expand-arrow" id="sheetArrow">&#9662;</span>
+        </div>
+        <div class="expand-list open" id="sheetSection">
+          <!-- ... your Google Sheet links ... -->
+          <!-- keep as-is, elided for brevity, or fill with your original links -->
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/1BgG1gnHxQYbOGFhNWBaE4DHEQWMLkKQvU1OX53hlnJE/edit?usp=sharing" target="_blank">1. Task Stamp</a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/1W7HuJOt6KI2V6IMMWWwti__fLei9k2J7tcVQ671WWmg/edit?usp=sharing" target="_blank">2. POC During Leave US</a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/1zLl7ZiPfS6nXF_XAUFzqFmSQhQM6mEDnu3arRYixdQg/edit?usp=sharing" target="_blank">3. Work From Home Tracker</a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/14_l1U_hAMx6pkbwkN_VBsewWvks3yTjwOxTVbbHQI_A/edit?usp=sharing" target="_blank">4. US Brands PXM Template</a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/1aH9NcxfhhjgLMJiJioQrJuk8NhUUEoUJABwl_kEXhS8/edit?gid=1854546926#gid=1854546926" target="_blank">5. EU Brand PXM Template</a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/1qWv4QZru441kPXfGX4bgMJ9n8hDahwpXGIMooRXilT0/edit?usp=sharing" target="_blank">6. Image Stack Tracker US</a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/1Le-lbEASnzIMGKvEfD_HofgtWTgJ3u2i5hIujNUwaO8/edit?usp=sharing" target="_blank">7. PXM Approved Sheet</a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/13hXAmVQMPxBqdQDD4laKCncwXmJLSPHYJ66ex5a977Y/edit?usp=sharing" target="_blank">8. Brand Assignments - Global sheet</a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/16qlNTCnIZqlmAdt5aXhs1qWrGf5kM2lZ5OpuN70g60s/edit?usp=sharing" target="_blank">9. Recurring Task Sheet Data Quality</a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/1EmTJv-aGuxG_E8L0UWfplsEh6K65oug7Z7YtySDCL5g/edit?usp=sharing" target="_blank">10. DQ Issue Type (JR Smith Task Issues)</a>
+          <a class="expand-link sheet-link" href="https://docs.google.com/spreadsheets/d/18qzzf2YbXDLLtIV7RgfylUnVOq9q3jNKLhfFC6KueyI/edit?usp=sharing" target="_blank">11. EPM Review Sheet</a>
+        </div>
+      </div>
+      <!-- ... rest of sidebar unchanged ... -->
+      <div class="expand-section">
+        <div class="section-title" onclick="toggleSection('dqtrainingSection', 'dqtrainingArrow')">
+          <span>Data Quality Training Videos</span>
+          <span class="expand-arrow" id="dqtrainingArrow">&#9662;</span>
+        </div>
+        <div class="expand-list" id="dqtrainingSection">
+          <a class="expand-link" href="https://drive.google.com/drive/folders/184h7SdX_yOjys5bFFQHtGC-FFSRJwStg" target="_blank">DQ Training Video Folder</a>
+        </div>
+      </div>
+      <div class="expand-section">
+        <div class="section-title" onclick="toggleSection('trainingSection', 'trainingArrow')">
+          <span>Automation Training Videos</span>
+          <span class="expand-arrow" id="trainingArrow">&#9662;</span>
+        </div>
+        <div class="expand-list" id="trainingSection">
+          <a class="expand-link" href="https://drive.google.com/file/d/1HnKvF05xzdnigUUVnJ_aLT8BrxGUvm5D/view?usp=drive_link" target="_blank">1. Image Stack Automation</a>
+          <a class="expand-link" href="https://drive.google.com/file/d/1vWswpGNxALWzFnfatBHVmjg7t5F-Cp3q/view?usp=drive_link" target="_blank">2. Image Quality Check Automation</a>
+          <a class="expand-link" href="https://drive.google.com/file/d/1au1CqQHMcF19ba88hyTGzrnlYoEcLH6b/view?usp=drive_link" target="_blank">3. PXM Automation</a>
+          <a class="expand-link" href="https://drive.google.com/file/d/1j17eCQGp5VF8LuBciZu2VBQwklgWuI_X/view?usp=drive_link" target="_blank">4. PC/ MF Analysis Automation</a>
+          <a class="expand-link" href="https://drive.google.com/drive/u/0/folders/1tVxzHhm04nNwQZm1_yjj3SCO9XoPy6Pk" target="_blank">5. Other Training Video</a>
+          <a class="expand-link" href="https://drive.google.com/file/d/1qhE15MtW9NHHpc1vvg0QOdUhpLJPA9lO/view?usp=drive_link" target="_blank">6. Category Updating Predict</a>
+          <a class="expand-link" href="https://drive.google.com/file/d/1DhEraDLYmBTP6UjFIngPMarEziIo_Rjb/view?usp=drive_link" target="_blank">7. PC DNO Automation</a>
+        </div>
+      </div>
+    </div>
+    <div class="center-content">
+      <span class="codes-title">DQ Automation Codes</span>
+      <a class="dqchat-bar" href="https://notebooklm.google.com/notebook/52a913c4-6f8c-4ad4-964e-e79d202ff07f" target="_blank" title="Open DQ Chat">
+        <svg fill="none" stroke="white" stroke-width="1.9" width="22" height="22" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3" fill="#25bffc"/><rect x="7" y="13" width="10" height="2" rx="1" fill="#fff"/><rect x="7" y="9" width="7" height="2" rx="1" fill="#fff"/></svg>
+        DQ Chat
+      </a>
+      <div class="pattern-chat-center">
+        <a class="pattern-chat-link" href="https://chat.pattern.com/c/4badb54e-c8f2-4fe7-9931-3f9fd87fe6e9" target="_blank">💬 Pattern Chat &rarr;</a>
+      </div>
+      <div class="codes-2col-grid">
+        <ul class="codes-ulist" id="codesUListLeft">
+          <li class="codes-li"><a href="https://colab.research.google.com/drive/1zaKq8gZo1gG26yOj0s0N7u3zNtdtkbcA?usp=sharing" class="codes-link" target="_blank">SEO Colour</a></li>
+          <li class="codes-li"><a href="https://colab.research.google.com/drive/1XVFrQ_ADmsIOOEW4sg8KEmEQVmOmmmVD?usp=sharing" class="codes-link" target="_blank">PXM</a></li>
+          <li class="codes-li"><a href="https://colab.research.google.com/drive/145QPjai0SDD7FdkzG13BBwOsziYSI4uF" class="codes-link" target="_blank">Image Stack</a></li>
+          <li class="codes-li"><a href="https://colab.research.google.com/drive/1oca5Dpk4W5ztFVzAWbail7zuXly0q6bb?usp=sharing" class="codes-link" target="_blank">Walmart DP SEO Scrap</a></li>
+          <li class="codes-li"><a href="https://colab.research.google.com/drive/18DsMuf0eJJNFwvEZdp1TONlAFzswIcDF?usp=sharing" class="codes-link" target="_blank">Category Updating Predict</a></li>
+          <li class="codes-li"><a href="https://colab.research.google.com/drive/1u14HFeArgEp8ljjk2WT66-sM51i-q9vM?usp=sharing" class="codes-link" target="_blank">PC- Listing Update EU</a></li>
+          <li class="codes-li"><a href="https://colab.research.google.com/drive/1jrnTiLX6n1Tqqf8uzHBvIi-kj58zptt3?usp=sharing" class="codes-link" target="_blank">Image stack to MF</a></li>
+        </ul>
+        <ul class="codes-ulist" id="codesUListRight">
+          <li class="codes-li"><a href="https://colab.research.google.com/drive/1jX7K-IGFdC5r8F2Pn4dqAc-Xrz_rnekA?usp=sharing" class="codes-link" target="_blank">Image QC</a></li>
+          <li class="codes-li"><a href="https://create-clr-947577624254.us-west1.run.app/" class="codes-link" target="_blank">CLR</a></li>
+          <li class="codes-li"><a href="https://colab.research.google.com/drive/1xwK-aCgkqWk61BfglR0YNL3yF5zIyE0t?usp=sharing" class="codes-link" target="_blank">Shelf Create Master ID</a></li>
+          <li class="codes-li"><a href="https://colab.research.google.com/drive/1xQlMaVQBwdQBuhfbtGb1rdakIhm8VxKR?usp=sharing" class="codes-link" target="_blank">PC/Shelf Update</a></li>
+          <li class="codes-li"><a href="https://colab.research.google.com/drive/1xchnDp1zPyfR9hK4jwnGKYqFIk6nbGr1?usp=sharing" class="codes-link" target="_blank">PC DNO Automation</a></li>
+          <li class="codes-li"><a href="https://colab.research.google.com/drive/1kCouHjLN26Fuhb1v_JzGvqdZI7wGUf9w#scrollTo=c0W5FcQbvuX7" class="codes-link" target="_blank">Walmart Price & Variation QC</a></li>
+          <!-- CLR Image Amazon with hover message -->
+          <li class="codes-li clr-amazon-li" style="position:relative;">
+            <div class="clr-tooltip">Currently working for Amazon US only</div>
+            <a class="codes-link" href="https://colab.research.google.com/drive/1RDufjTU7z-pGhW4BNDN1Fdbfm8qr6G2u?usp=sharing" target="_blank">
+              CLR Image Amazon
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="sidebar-right">
+      <div class="expand-section">
+        <div class="section-title" onclick="toggleSection('platformSection','platformArrow')">
+          <span>Platform Links</span>
+          <span class="expand-arrow" id="platformArrow">&#9662;</span>
+        </div>
+        <div class="expand-list open" id="platformSection">
+          <a class="expand-link internal-link" href="https://pattern.amplifi.io/" target="_blank">PXM</a>
+          <a class="expand-link internal-link" href="https://www.useshelf.com/receiving/purchase-orders" target="_blank">PC/ Shelf</a>
+          <a class="expand-link internal-link" href="https://predict.pattern.com/insights/at-a-glance/sales-overview" target="_blank">Predict</a>
+        </div>
+      </div>
+      <div class="expand-section">
+        <div class="section-title" onclick="toggleSection('sellerSection','sellerArrow')">
+          <span>Seller Center Links</span>
+          <span class="expand-arrow" id="sellerArrow">&#9662;</span>
+        </div>
+        <div class="expand-list open" id="sellerSection">
+          <a class="expand-link platform-amazon" href="https://sellercentral.amazon.com/" target="_blank">Amazon Seller Central</a>
+          <a class="expand-link platform-walmart" href="https://login.account.wal-mart.com/authorize" target="_blank">Walmart Seller Center</a>
+          <a class="expand-link platform-target" href="https://logonservices.oauth.iam.partnersonline.com/v1/login" target="_blank">Target Seller Center</a>
+          <a class="expand-link platform-macys" href="https://macysus-prod.mirakl.net/marketplace-dashboard/" target="_blank">Macy’s</a>
+          <a class="expand-link platform-ebay" href="https://www.ebay.com/sh/ovw" target="_blank">eBay</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+function toggleSection(sectionId, arrowId){
+  var section = document.getElementById(sectionId);
+  var arrow = document.getElementById(arrowId);
+  if (section.classList.contains("open")) {
+    section.classList.remove("open");
+    arrow.style.transform = "rotate(0deg)";
+  } else {
+    section.classList.add("open");
+    arrow.style.transform = "rotate(180deg)";
+  }
+}
+// On page load, keep "sheetSection" open, others closed
+document.addEventListener("DOMContentLoaded", function(){
+  document.getElementById('sheetSection').classList.add('open');
+  document.getElementById('sheetArrow').style.transform = "rotate(180deg)";
+  document.getElementById('dqtrainingSection').classList.remove('open');
+  document.getElementById('dqtrainingArrow').style.transform = "rotate(0deg)";
+  document.getElementById('trainingSection').classList.remove('open');
+  document.getElementById('trainingArrow').style.transform = "rotate(0deg)";
+  document.getElementById('platformSection').classList.add('open');
+  document.getElementById('sellerSection').classList.add('open');
+});
+const globalSearchEl = document.getElementById('globalSearchInput');
+const suggestEl = document.getElementById('globalSearchSuggest');
+function getAllSearchableLinks() {
+  let links = Array.from(document.querySelectorAll('a, .codes-title, .dqteam, .pattern-title, .name, .section-title'));
+  let items = [];
+  links.forEach(el => {
+    let text = (el.textContent || el.innerText).trim();
+    if (text && text.length > 1) {
+      items.push({
+        text: text,
+        href: el.href && el.href.startsWith('http') ? el.href : null,
+        node: el
+      });
+    }
+  });
+  return items;
+}
+let allPageItems = getAllSearchableLinks();
+globalSearchEl.addEventListener('input', function() {
+  let value = globalSearchEl.value.trim().toLowerCase();
+  suggestEl.innerHTML = '';
+  if (!value) {
+    suggestEl.style.display = 'none';
+    return;
+  }
+  let matches = allPageItems.filter(item => item.text.toLowerCase().includes(value));
+  if (matches.length) {
+    matches.slice(0,12).forEach(m=>{
+      const div = document.createElement('div');
+      div.className = 'global-search-suggest-item';
+      div.textContent = m.text;
+      div.onclick = () => {
+        if (m.href) {
+          window.open(m.href, "_blank");
+        } else if (m.node && m.node.scrollIntoView) {
+          m.node.scrollIntoView({behavior: 'smooth', block:'center'});
+          m.node.style.background = '#ffe173';
+          setTimeout(()=> { m.node.style.background=''; }, 1200);
+        }
+        suggestEl.style.display = 'none';
+      };
+      suggestEl.appendChild(div);
+    });
+    suggestEl.style.display = 'block';
+  } else {
+    suggestEl.style.display = 'none';
+  }
+});
+document.addEventListener('click', function(e){
+  if (!globalSearchEl.contains(e.target) && !suggestEl.contains(e.target)) {
+    suggestEl.style.display='none';
+  }
+});
+globalSearchEl.addEventListener('keydown',function(e){
+  let openSuggest = suggestEl.querySelector('.global-search-suggest-item');
+  if (e.key==='Enter' && openSuggest) {
+    openSuggest.click();
+    e.preventDefault();
+  }
+});
+</script>
+</body>
+</html>
+
+							<script>
+                            	
+							</script>
+                        </body>
+                        </html>
+                    
